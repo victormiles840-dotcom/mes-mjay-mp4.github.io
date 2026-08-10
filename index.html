@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MES MJAY MP4</title>
+
+  <!-- Google Search -->
+  <script async src="https://cse.google.com/cse.js?cx=c03eb13f23fc041c1"></script>
+
+  <!-- Graphic Design Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #050507;
+      color: white;
+      font-family: "Inter", Arial, sans-serif;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at 20% 30%, rgba(125, 0, 255, 0.40), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(255, 0, 100, 0.30), transparent 30%),
+        linear-gradient(135deg, #08000f, #050507 55%, #10000b);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: #7b00ff;
+      filter: blur(170px);
+      opacity: 0.18;
+      top: -250px;
+      left: -150px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: #ff0066;
+      filter: blur(170px);
+      opacity: 0.15;
+      bottom: -250px;
+      right: -150px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 950px;
+    }
+
+    .logo {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(35px, 8vw, 75px);
+      font-weight: 900;
+      letter-spacing: 5px;
+      margin: 0;
+
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #b95cff,
+        #ff278c
+      );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      font-family: "Orbitron", sans-serif;
+      font-size: 13px;
+      letter-spacing: 5px;
+      color: #c5b4ce;
+      margin: 20px 0 35px;
+    }
+
+    /* GOOGLE SEARCH */
+
+    .google-search {
+      max-width: 750px;
+      margin: auto;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 40px rgba(128,0,255,0.20);
+    }
+
+    /* CATEGORY BUTTONS */
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .category {
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: #ddd;
+      padding: 10px 17px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .category:hover {
+      background: linear-gradient(90deg, #7300ff, #ff0066);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* MAIN */
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 55px 20px;
+    }
+
+    .section-title {
+      font-family: "Orbitron", sans-serif;
+      font-size: 23px;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+    }
+
+    .section-title span {
+      color: #a500ff;
+    }
+
+    /* MIX CARDS */
+
+    .mix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .mix {
+      background: linear-gradient(145deg, #17141c, #0d0d10);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .mix:hover {
+      transform: translateY(-6px);
+      border-color: rgba(170,0,255,0.5);
+      box-shadow: 0 15px 45px rgba(100,0,255,0.18);
+    }
+
+    .cover {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 65px;
+
+      background:
+        radial-gradient(circle at 30% 30%, #8100ff, transparent 35%),
+        radial-gradient(circle at 80% 70%, #ff0066, transparent 40%),
+        #111;
+    }
+
+    .mix-content {
+      padding: 20px;
+    }
+
+    .mix h2 {
+      font-family: "Orbitron", sans-serif;
+      font-size: 16px;
+      margin: 0 0 10px;
+    }
+
+    .mix-info {
+      color: #999;
+      font-size: 13px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .button {
+      flex: 1;
+      text-align: center;
+      padding: 11px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .listen {
+      background: linear-gradient(90deg, #7300ff, #a900ff);
+      color: white;
+    }
+
+    .download {
+      background: #222228;
+      color: #ddd;
+      border: 1px solid #33333c;
+    }
+
+    .button:hover {
+      filter: brightness(1.25);
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #1a1a1f;
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+
+    .footer-logo {
+      font-family: "Orbitron", sans-serif;
+      letter-spacing: 3px;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      .hero {
+        min-height: 480px;
+      }
+
+      .logo {
+        letter-spacing: 2px;
+      }
+
+      .tagline {
+        letter-spacing: 2px;
+        font-size: 10px;
+      }
+
+      .mix-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1 class="logo">
+        MES MJAY MP4
+      </h1>
+
+      <p class="tagline">
+        DISCOVER • LISTEN • DOWNLOAD
+      </p>
+
+      <!-- GOOGLE SEARCH -->
+
+      <div class="google-search">
+
+        <div class="gcse-search"></div>
+
+      </div>
+
+      <!-- CATEGORIES -->
+
+      <div class="categories">
+
+        <button class="category">
+          🎧 Amapiano
+        </button>
+
+        <button class="category">
+          🔥 Afro House
+        </button>
+
+        <button class="category">
+          🎤 Hip Hop
+        </button>
+
+        <button class="category">
+          💃 Dancehall
+        </button>
+
+        <button class="category">
+          🌙 Deep House
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURED MIXES -->
+
+  <main>
+
+    <h2 class="section-title">
+      <span>🔥</span> FEATURED MIXES
+    </h2>
+
+    <div class="mix-grid">
+
+
+      <div class="mix">
+
+        <div class="cover">
+          🎧
+        </div>
+
+        <div class="mix-content">
+
+          <h2>
+            Amapiano Party Mix
+          </h2>
+
+          <div class="mix-info">
+            DJ Mix • Amapiano
+          </div>
+
+          <div class="buttons">
+
+            <a href="#" class="button listen">
+              ▶ Listen
+            </a>
+
+            <a href="#" class="button download">
+              ⬇ Download
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="mix">
+
+        <div class="cover">
+          🔥
+        </div>
+
+        <div class="mix-content">
+
+          <h2>
+            Afro House Session
+          </h2>
+
+          <div class="mix-info">
+            DJ Mix • Afro House
+          </div>
+
+          <div class="buttons">
+
+            <a href="#" class="button listen">
+              ▶ Listen
+            </a>
+
+            <a href="#" class="button download">
+              ⬇ Download
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="mix">
+
+        <div class="cover">
+          🌙
+        </div>
+
+        <div class="mix-content">
+
+          <h2>
+            Deep House Night
+          </h2>
+
+          <div class="mix-info">
+            DJ Mix • Deep House
+          </div>
+
+          <div class="buttons">
+
+            <a href="#" class="button listen">
+              ▶ Listen
+            </a>
+
+            <a href="#" class="button download">
+              ⬇ Download
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-logo">
+      MES MJAY MP4
+    </div>
+
+    <div>
+      Discover great mixes from DJs around the world.
+    </div>
+
+    <br>
+
+    © 2026 MES MJAY MP4
+
+  </footer>
+
+</body>
+</html>
