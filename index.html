@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>MES MJAY MP4 - DJ Mix Search</title>
+  <title>MES MJAY MP4</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,343 +15,160 @@
   >
 
   <style>
-
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
       background: #050507;
-      color: #ffffff;
+      color: white;
       font-family: "Inter", Arial, sans-serif;
     }
 
-    /* =========================
-       HERO
-    ========================= */
-
     header {
-      min-height: 520px;
-      padding: 70px 20px 60px;
-
+      min-height: 500px;
+      padding: 70px 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-
       text-align: center;
-
       position: relative;
       overflow: hidden;
 
       background:
-        radial-gradient(
-          circle at 15% 25%,
-          rgba(130, 0, 255, 0.40),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 85% 75%,
-          rgba(255, 0, 110, 0.30),
-          transparent 30%
-        ),
-        linear-gradient(
-          135deg,
-          #09000f,
-          #050507 55%,
-          #100008
-        );
-    }
-
-    header::before {
-      content: "";
-      position: absolute;
-
-      width: 400px;
-      height: 400px;
-
-      background: #7900ff;
-
-      filter: blur(160px);
-
-      opacity: 0.18;
-
-      top: -200px;
-      left: -150px;
-    }
-
-    header::after {
-      content: "";
-      position: absolute;
-
-      width: 400px;
-      height: 400px;
-
-      background: #ff006a;
-
-      filter: blur(160px);
-
-      opacity: 0.15;
-
-      bottom: -200px;
-      right: -150px;
+        radial-gradient(circle at 15% 25%, rgba(130,0,255,.4), transparent 30%),
+        radial-gradient(circle at 85% 75%, rgba(255,0,110,.3), transparent 30%),
+        linear-gradient(135deg,#09000f,#050507 55%,#100008);
     }
 
     .hero {
       width: 100%;
       max-width: 950px;
-
       position: relative;
       z-index: 2;
     }
 
     .logo {
       margin: 0;
-
       font-family: "Orbitron", sans-serif;
-
-      font-size: clamp(35px, 8vw, 75px);
-
+      font-size: clamp(35px,8vw,75px);
       font-weight: 900;
-
       letter-spacing: 5px;
 
-      background:
-        linear-gradient(
-          90deg,
-          #ffffff,
-          #b65cff,
-          #ff278c
-        );
-
+      background: linear-gradient(90deg,#fff,#b65cff,#ff278c);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .tagline {
       margin: 20px 0 35px;
-
       font-family: "Orbitron", sans-serif;
-
       font-size: 12px;
-
       letter-spacing: 5px;
-
       color: #c1b1ca;
     }
-
-    /* =========================
-       SEARCH
-    ========================= */
 
     .search-area {
       width: 100%;
       max-width: 760px;
-
       margin: auto;
-
       display: flex;
-
       gap: 10px;
     }
 
     #search {
       flex: 1;
-
       min-width: 0;
-
       padding: 19px 24px;
-
       border-radius: 50px;
-
       border: 1px solid #3b3545;
-
       outline: none;
-
-      background: rgba(255,255,255,0.08);
-
+      background: rgba(255,255,255,.08);
       color: white;
-
       font-size: 16px;
-
-      box-shadow:
-        0 0 35px rgba(120,0,255,0.20);
-
-      transition: 0.25s;
     }
 
     #search::placeholder {
       color: #888;
     }
 
-    #search:focus {
-      border-color: #a600ff;
-
-      box-shadow:
-        0 0 35px rgba(166,0,255,0.40);
-    }
-
     .search-button {
       border: 0;
-
       padding: 0 25px;
-
       border-radius: 50px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #7200ff,
-          #ff0066
-        );
-
+      background: linear-gradient(90deg,#7200ff,#ff0066);
       color: white;
-
       font-weight: 700;
-
       cursor: pointer;
-
-      transition: 0.25s;
     }
-
-    .search-button:hover {
-      transform: scale(1.04);
-
-      filter: brightness(1.15);
-    }
-
-    /* =========================
-       CATEGORIES
-    ========================= */
 
     .categories {
       margin-top: 25px;
-
       display: flex;
-
       justify-content: center;
-
       flex-wrap: wrap;
-
       gap: 10px;
     }
 
     .category {
       border: 1px solid #302b38;
-
-      background: rgba(255,255,255,0.05);
-
+      background: rgba(255,255,255,.05);
       color: #ddd;
-
       padding: 10px 17px;
-
       border-radius: 30px;
-
       cursor: pointer;
-
-      transition: 0.25s;
     }
 
     .category:hover {
-      background:
-        linear-gradient(
-          90deg,
-          #7200ff,
-          #ff0066
-        );
-
+      background: linear-gradient(90deg,#7200ff,#ff0066);
       color: white;
-
-      transform: translateY(-2px);
     }
-
-    /* =========================
-       MAIN
-    ========================= */
 
     main {
       max-width: 1200px;
-
       margin: auto;
-
       padding: 55px 20px;
     }
 
     .section-title {
       font-family: "Orbitron", sans-serif;
-
       letter-spacing: 2px;
-
-      margin: 0 0 25px;
+      margin-bottom: 25px;
     }
 
     .section-title span {
       color: #a500ff;
     }
 
-    .status {
-      display: none;
-
+    #status {
       text-align: center;
-
       color: #999;
-
-      padding: 35px 20px;
+      padding: 30px;
     }
-
-    /* =========================
-       RESULTS
-    ========================= */
 
     #results {
       display: grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(280px, 1fr)
-        );
-
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
       gap: 22px;
     }
 
     .video-card {
-      background:
-        linear-gradient(
-          145deg,
-          #17141c,
-          #0d0d10
-        );
-
+      background: linear-gradient(145deg,#17141c,#0d0d10);
       border: 1px solid #24212a;
-
       border-radius: 18px;
-
       overflow: hidden;
-
-      transition: 0.3s;
     }
 
     .video-card:hover {
-      transform: translateY(-6px);
-
-      border-color: rgba(150,0,255,0.60);
-
-      box-shadow:
-        0 15px 45px rgba(100,0,255,0.20);
+      transform: translateY(-5px);
+      border-color: #8500ff;
     }
 
     .thumbnail {
       width: 100%;
-
       height: 190px;
-
       object-fit: cover;
-
       display: block;
     }
 
@@ -361,154 +178,83 @@
 
     .video-title {
       font-family: "Orbitron", sans-serif;
-
       font-size: 15px;
-
       line-height: 1.5;
-
       margin: 0 0 10px;
-
-      color: #fff;
     }
 
     .channel {
       color: #999;
-
       font-size: 13px;
-
       margin-bottom: 17px;
     }
 
     .actions {
       display: flex;
-
       gap: 10px;
     }
 
     .button {
       flex: 1;
-
       border: 0;
-
       padding: 11px;
-
       border-radius: 9px;
-
       text-align: center;
-
       font-size: 13px;
-
       font-weight: 700;
-
       cursor: pointer;
-
       text-decoration: none;
-
-      transition: 0.25s;
     }
 
     .listen {
-      background:
-        linear-gradient(
-          90deg,
-          #7300ff,
-          #a700ff
-        );
-
+      background: linear-gradient(90deg,#7300ff,#a700ff);
       color: white;
     }
 
     .youtube {
       background: #222228;
-
       color: #ddd;
-
       border: 1px solid #35353e;
     }
 
-    .button:hover {
-      filter: brightness(1.2);
+    .download {
+      background: linear-gradient(90deg,#00a86b,#00d084);
+      color: white;
     }
-
-    /* =========================
-       PLAYER
-    ========================= */
 
     .player-box {
       display: none;
-
       margin-top: 15px;
-
       border-radius: 12px;
-
       overflow: hidden;
-
       background: #000;
     }
 
     .player-box iframe {
       width: 100%;
-
       height: 230px;
-
       border: 0;
-
       display: block;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
-
     footer {
       border-top: 1px solid #1b1b20;
-
       text-align: center;
-
       padding: 40px 20px;
-
       color: #666;
     }
 
     .footer-logo {
       font-family: "Orbitron", sans-serif;
-
       letter-spacing: 3px;
-
       color: #aaa;
-
       margin-bottom: 10px;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 650px) {
-
-      header {
-        min-height: 500px;
-
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-
-      .logo {
-        letter-spacing: 2px;
-      }
-
-      .tagline {
-        letter-spacing: 2px;
-
-        font-size: 10px;
-      }
+    @media (max-width:650px) {
 
       .search-area {
         flex-direction: column;
-      }
-
-      #search {
-        width: 100%;
       }
 
       .search-button {
@@ -518,19 +264,11 @@
       #results {
         grid-template-columns: 1fr;
       }
-
     }
-
   </style>
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header>
 
@@ -541,9 +279,8 @@
     </h1>
 
     <p class="tagline">
-      SEARCH • LISTEN • DISCOVER
+      SEARCH • LISTEN • DOWNLOAD
     </p>
-
 
     <div class="search-area">
 
@@ -551,7 +288,6 @@
         id="search"
         type="search"
         placeholder="🔍 Search DJ, mix or song..."
-        autocomplete="off"
       >
 
       <button
@@ -562,7 +298,6 @@
       </button>
 
     </div>
-
 
     <div class="categories">
 
@@ -608,33 +343,20 @@
 </header>
 
 
-<!-- =========================
-     MAIN
-========================= -->
-
 <main>
 
   <h2 class="section-title">
     <span>🔥</span> SEARCH RESULTS
   </h2>
 
-
-  <div
-    id="status"
-    class="status"
-  >
+  <div id="status">
     Search for a DJ, song or mix above.
   </div>
-
 
   <div id="results"></div>
 
 </main>
 
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
@@ -654,15 +376,10 @@
 <script>
 
   /*
-   * ==================================================
-   * YOUTUBE API KEY
-   * ==================================================
+   * YOUR YOUTUBE DATA API KEY
    *
-   * DO NOT SEND YOUR REAL KEY TO ANYONE.
-   *
-   * Replace the text below with your own API key
-   * after saving a restricted key in Google Cloud.
-   *
+   * Use a NEW restricted key.
+   * Never post the key publicly.
    */
 
   const API_KEY =
@@ -670,18 +387,32 @@
 
 
   /*
-   * ==================================================
-   * SEARCH YOUTUBE
-   * ==================================================
+   * AUTHORIZED DOWNLOADS
+   *
+   * Put download links here ONLY for files
+   * you own or have permission to distribute.
+   *
+   * Example:
+   *
+   * "YOUTUBE_VIDEO_ID":
+   * "https://your-authorized-file-url.mp3"
+   *
    */
+
+  const DOWNLOADS = {
+
+    /*
+      "exampleVideoID":
+      "https://yourwebsite.com/mix.mp3"
+    */
+
+  };
+
 
   async function searchYouTube() {
 
-    const searchInput =
-      document.getElementById("search");
-
     const query =
-      searchInput.value.trim();
+      document.getElementById("search").value.trim();
 
     const results =
       document.getElementById("results");
@@ -706,15 +437,13 @@
 
     if (
       API_KEY ===
-      "PASTE_YOUR_API_KEY_HERE"
+      "PASTE_YOUR_NEW_API_KEY_HERE"
     ) {
-
-      results.innerHTML = "";
 
       status.style.display = "block";
 
       status.textContent =
-        "Your YouTube API key has not been added yet.";
+        "YouTube API key has not been added yet.";
 
       return;
 
@@ -733,18 +462,12 @@
 
       const url =
         "https://www.googleapis.com/youtube/v3/search" +
-
         "?part=snippet" +
-
         "&q=" +
         encodeURIComponent(query) +
-
         "&type=video" +
-
         "&videoEmbeddable=true" +
-
         "&maxResults=12" +
-
         "&key=" +
         encodeURIComponent(API_KEY);
 
@@ -758,8 +481,6 @@
 
 
       if (!response.ok) {
-
-        console.error(data);
 
         throw new Error(
           data.error?.message ||
@@ -803,8 +524,34 @@
 
           const thumbnail =
             video.snippet.thumbnails.high?.url ||
-            video.snippet.thumbnails.medium?.url ||
-            video.snippet.thumbnails.default?.url;
+            video.snippet.thumbnails.medium?.url;
+
+
+          /*
+           * ONLY SHOW DOWNLOAD IF
+           * WE HAVE AN AUTHORIZED LINK.
+           */
+
+          let downloadButton = "";
+
+
+          if (DOWNLOADS[videoId]) {
+
+            downloadButton = `
+
+              <a
+                class="button download"
+                href="${DOWNLOADS[videoId]}"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ⬇ DOWNLOAD
+              </a>
+
+            `;
+
+          }
 
 
           return `
@@ -850,6 +597,8 @@
                     YouTube
                   </a>
 
+                  ${downloadButton}
+
                 </div>
 
 
@@ -874,18 +623,12 @@
       status.style.display = "block";
 
       status.textContent =
-        "⚠️ Search failed. Check your API key and try again.";
+        "⚠️ Search failed. Check your API key.";
 
     }
 
   }
 
-
-  /*
-   * ==================================================
-   * PLAY YOUTUBE VIDEO ON OUR SITE
-   * ==================================================
-   */
 
   function playVideo(videoId) {
 
@@ -936,12 +679,6 @@
   }
 
 
-  /*
-   * ==================================================
-   * CATEGORY SEARCH
-   * ==================================================
-   */
-
   function searchCategory(category) {
 
     document.getElementById("search").value =
@@ -951,12 +688,6 @@
 
   }
 
-
-  /*
-   * ==================================================
-   * PRESS ENTER TO SEARCH
-   * ==================================================
-   */
 
   document
     .getElementById("search")
@@ -974,45 +705,23 @@
     );
 
 
-  /*
-   * ==================================================
-   * BASIC HTML SAFETY
-   * ==================================================
-   */
-
   function escapeHTML(value) {
 
     return String(value)
 
-      .replace(
-        /&/g,
-        "&amp;"
-      )
+      .replace(/&/g, "&amp;")
 
-      .replace(
-        /</g,
-        "&lt;"
-      )
+      .replace(/</g, "&lt;")
 
-      .replace(
-        />/g,
-        "&gt;"
-      )
+      .replace(/>/g, "&gt;")
 
-      .replace(
-        /"/g,
-        "&quot;"
-      )
+      .replace(/"/g, "&quot;")
 
-      .replace(
-        /'/g,
-        "&#039;"
-      );
+      .replace(/'/g, "&#039;");
 
   }
 
 </script>
-
 
 </body>
 </html>
