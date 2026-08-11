@@ -74,6 +74,12 @@
       cursor: pointer;
     }
 
+    #searchButton:disabled,
+    #uploadButton:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     .categories {
       margin-top: 25px;
       display: flex;
@@ -179,6 +185,12 @@
       margin-bottom: 15px;
     }
 
+    .description {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
     .buttons {
       display: flex;
       flex-wrap: wrap;
@@ -232,6 +244,10 @@
       border-radius: 18px;
     }
 
+    .upload-section h2 {
+      margin-top: 0;
+    }
+
     .upload-section input,
     .upload-section textarea {
       width: 100%;
@@ -263,6 +279,7 @@
       margin-top: 15px;
       color: #aaa;
       text-align: center;
+      min-height: 20px;
     }
 
     footer {
@@ -304,7 +321,7 @@
   placeholder="Search songs, DJs or mixes..."
 >
 
-<button id="searchButton">
+<button id="searchButton" type="button">
   SEARCH
 </button>
 ```
@@ -314,19 +331,19 @@
   <div class="categories">
 
 ```
-<button class="category" data-query="Amapiano DJ Mix">
+<button class="category" type="button" data-query="Amapiano DJ Mix">
   🎧 Amapiano
 </button>
 
-<button class="category" data-query="Afro House DJ Mix">
+<button class="category" type="button" data-query="Afro House DJ Mix">
   🔥 Afro House
 </button>
 
-<button class="category" data-query="Hip Hop DJ Mix">
+<button class="category" type="button" data-query="Hip Hop DJ Mix">
   🎤 Hip Hop
 </button>
 
-<button class="category" data-query="Dancehall DJ Mix">
+<button class="category" type="button" data-query="Dancehall DJ Mix">
   💃 Dancehall
 </button>
 ```
@@ -386,7 +403,10 @@
   accept="audio/mpeg,audio/mp4,audio/wav,video/mp4"
 >
 
-<button id="uploadButton">
+<button
+  id="uploadButton"
+  type="button"
+>
   UPLOAD MIX
 </button>
 
@@ -398,9 +418,13 @@
 </main>
 
 <footer>
-  <strong>MES MJAY MP4</strong>
-  <br><br>
-  Search • Listen • Upload • Download
+
+<strong>MES MJAY MP4</strong>
+
+<br><br>
+
+Search • Listen • Upload • Download
+
 </footer>
 
 <script>
@@ -409,21 +433,13 @@
    1. CONFIGURATION
 ===================================================== */
 
-
-/*
-   SUPABASE URL
-*/
-
 const SUPABASE_URL =
   "https://wnlajqbpkwtwpaaeqkxj.supabase.co";
 
-
 /*
-   SUPABASE PUBLISHABLE KEY
+  Use your Supabase PUBLISHABLE key here.
 
-   Replace this with your Supabase publishable key.
-
-   NEVER put a Supabase service_role/secret key here.
+  Never use a service_role or secret key in this file.
 */
 
 const SUPABASE_PUBLISHABLE_KEY =
@@ -431,9 +447,7 @@ const SUPABASE_PUBLISHABLE_KEY =
 
 
 /*
-   YOUTUBE API KEY
-
-   Replace this with the NEW key from Google Cloud.
+  Use your restricted YouTube API key here.
 */
 
 const YOUTUBE_API_KEY =
@@ -441,14 +455,14 @@ const YOUTUBE_API_KEY =
 
 
 /* =====================================================
-   2. SUPABASE
+   2. SUPABASE CONNECTION
 ===================================================== */
 
 let supabaseClient = null;
 
 if (
   SUPABASE_PUBLISHABLE_KEY &&
-  !SUPABASE_PUBLISHABLE_KEY.includes("PASTE_")
+  !SUPABASE_PUBLISHABLE_KEY.includes("YOUR_")
 ) {
 
   supabaseClient =
@@ -461,7 +475,7 @@ if (
 
 
 /* =====================================================
-   3. MAIN SEARCH
+   3. SEARCH EVERYTHING
 ===================================================== */
 
 async function searchEverything() {
@@ -472,14 +486,11 @@ async function searchEverything() {
       .value
       .trim();
 
-
   const results =
     document.getElementById("results");
 
-
   const status =
     document.getElementById("status");
-
 
   if (!query) {
 
@@ -487,24 +498,17 @@ async function searchEverything() {
       "Type a song, DJ or mix.";
 
     return;
-
   }
-
 
   results.innerHTML = "";
 
   status.textContent =
     "🔎 Searching YouTube and MES MJAY MP4...";
 
-
   await Promise.allSettled([
-
     searchYouTube(query),
-
     searchMyUploads(query)
-
   ]);
-
 
   if (!results.children.length) {
 
@@ -515,7 +519,6 @@ async function searchEverything() {
 
     status.textContent =
       "✅ Results found";
-
   }
 
 }
@@ -529,48 +532,33 @@ async function searchYouTube(query) {
 
   if (
     !YOUTUBE_API_KEY ||
-    YOUTUBE_API_KEY.includes("PASTE_")
+    YOUTUBE_API_KEY.includes("YOUR_")
   ) {
 
     showMessage(
       "YouTube",
-      "YouTube API key has not been added."
+      "YouTube API key has not been configured."
     );
 
     return;
-
   }
-
 
   try {
 
     const url =
       "https://www.googleapis.com/youtube/v3/search" +
-
       "?part=snippet" +
-
-      "&q=" +
-      encodeURIComponent(query) +
-
+      "&q=" + encodeURIComponent(query) +
       "&type=video" +
-
       "&videoEmbeddable=true" +
-
       "&maxResults=12" +
-
-      "&key=" +
-      encodeURIComponent(
-        YOUTUBE_API_KEY
-      );
-
+      "&key=" + encodeURIComponent(YOUTUBE_API_KEY);
 
     const response =
       await fetch(url);
 
-
     const data =
       await response.json();
-
 
     if (!response.ok) {
 
@@ -579,56 +567,37 @@ async function searchYouTube(query) {
         data
       );
 
-
-      let errorMessage =
-        data?.error?.message ||
-        "YouTube API request failed.";
-
-
       const reason =
         data?.error?.errors?.[0]?.reason;
 
+      let message =
+        data?.error?.message ||
+        "YouTube API request failed.";
 
-      if (
-        reason === "keyInvalid"
-      ) {
+      if (reason === "keyInvalid") {
 
-        errorMessage =
+        message =
           "Your YouTube API key is invalid.";
 
-      }
+      } else if (reason === "ipRefererBlocked") {
 
+        message =
+          "Your YouTube API key is blocked by its website restriction.";
 
-      if (
-        reason === "ipRefererBlocked"
-      ) {
+      } else if (reason === "quotaExceeded") {
 
-        errorMessage =
-          "Your API key is blocked by its website restriction.";
-
-      }
-
-
-      if (
-        reason === "quotaExceeded"
-      ) {
-
-        errorMessage =
-          "YouTube API quota has been exceeded.";
+        message =
+          "Your YouTube API quota has been exceeded.";
 
       }
-
 
       showMessage(
         "YouTube ERROR",
-        errorMessage
+        message
       );
 
-
       return;
-
     }
-
 
     if (
       !data.items ||
@@ -641,130 +610,100 @@ async function searchYouTube(query) {
       );
 
       return;
-
     }
 
+    data.items.forEach(video => {
 
-    data.items.forEach(
-      video => {
+      const videoId =
+        video?.id?.videoId;
 
-        const videoId =
-          video?.id?.videoId;
+      if (!videoId) {
+        return;
+      }
 
+      const title =
+        escapeHTML(
+          video.snippet.title
+        );
 
-        if (!videoId) {
-          return;
-        }
+      const channel =
+        escapeHTML(
+          video.snippet.channelTitle
+        );
 
+      const thumbnail =
+        video.snippet.thumbnails.high?.url ||
+        video.snippet.thumbnails.medium?.url ||
+        video.snippet.thumbnails.default?.url ||
+        "";
 
-        const title =
-          escapeHTML(
-            video.snippet.title
-          );
+      const card =
+        document.createElement("article");
 
+      card.className = "card";
 
-        const channel =
-          escapeHTML(
-            video.snippet.channelTitle
-          );
+      card.innerHTML = `
+        <img
+          class="thumbnail"
+          src="${escapeAttribute(thumbnail)}"
+          alt="${title}"
+        >
 
+        <div class="card-content">
 
-        const thumbnail =
-          video.snippet
-            .thumbnails
-            .high?.url ||
-          video.snippet
-            .thumbnails
-            .medium?.url ||
-          video.snippet
-            .thumbnails
-            .default?.url;
+          <div class="source youtube-source">
+            YOUTUBE
+          </div>
 
+          <div class="title">
+            ${title}
+          </div>
 
-        const card =
-          document.createElement(
-            "article"
-          );
+          <div class="artist">
+            ${channel}
+          </div>
 
+          <div class="buttons">
 
-        card.className =
-          "card";
-
-
-        card.innerHTML = `
-
-          <img
-            class="thumbnail"
-            src="${thumbnail}"
-            alt="${title}"
-          >
-
-          <div class="card-content">
-
-            <div class="source youtube-source">
-              YOUTUBE
-            </div>
-
-            <div class="title">
-              ${title}
-            </div>
-
-            <div class="artist">
-              ${channel}
-            </div>
-
-            <div class="buttons">
-
-              <button
-                class="button listen"
-                onclick="
-                  playYouTube(
-                    '${escapeJS(videoId)}',
-                    this
-                  )
-                "
-              >
-                ▶ LISTEN
-              </button>
-
-            </div>
-
-            <div class="player"></div>
+            <button
+              class="button listen"
+              type="button"
+              onclick="playYouTube('${escapeJS(videoId)}', this)"
+            >
+              ▶ LISTEN
+            </button>
 
           </div>
 
-        `;
+          <div class="player"></div>
 
+        </div>
+      `;
 
-        document
-          .getElementById("results")
-          .appendChild(card);
+      document
+        .getElementById("results")
+        .appendChild(card);
 
-      }
-    );
+    });
 
-  }
-
-  catch(error) {
+  } catch (error) {
 
     console.error(
       "YouTube connection error:",
       error
     );
 
-
     showMessage(
       "YouTube",
       "Could not connect to YouTube."
     );
-
   }
 
 }
 
 
 /* =====================================================
-   5. PLAY YOUTUBE INSIDE YOUR WEBSITE
+   5. PLAY YOUTUBE INSIDE WEBSITE
 ===================================================== */
 
 function playYouTube(
@@ -775,31 +714,25 @@ function playYouTube(
   const card =
     button.closest(".card");
 
-
   const player =
     card.querySelector(".player");
-
 
   player.style.display =
     "block";
 
-
   player.innerHTML = `
-
     <iframe
       src="https://www.youtube.com/embed/${encodeURIComponent(videoId)}"
       title="YouTube player"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen>
     </iframe>
-
   `;
-
 }
 
 
 /* =====================================================
-   6. SEARCH YOUR SUPABASE MIXES
+   6. SEARCH YOUR SUPABASE UPLOADS
 ===================================================== */
 
 async function searchMyUploads(query) {
@@ -808,14 +741,12 @@ async function searchMyUploads(query) {
     return;
   }
 
-
   try {
 
     const safeQuery =
       query
         .replace(/,/g, " ")
         .trim();
-
 
     const {
       data,
@@ -829,158 +760,114 @@ async function searchMyUploads(query) {
         )
         .limit(30);
 
-
     if (error) {
 
       console.error(
-        "Supabase ERROR:",
+        "Supabase search error:",
         error
       );
 
       return;
-
     }
-
 
     if (!data?.length) {
       return;
     }
 
+    data.forEach(mix => {
 
-    data.forEach(
-      mix => {
+      const title =
+        escapeHTML(
+          mix.title || "Untitled Mix"
+        );
 
-        const title =
-          escapeHTML(
-            mix.title ||
-            "Untitled Mix"
-          );
+      const artist =
+        escapeHTML(
+          mix.artist || "Unknown DJ"
+        );
 
+      const genre =
+        escapeHTML(
+          mix.genre || ""
+        );
 
-        const artist =
-          escapeHTML(
-            mix.artist ||
-            "Unknown DJ"
-          );
+      const description =
+        escapeHTML(
+          mix.description || ""
+        );
 
+      const audioURL =
+        String(
+          mix.audio_url || ""
+        );
 
-        const genre =
-          escapeHTML(
-            mix.genre ||
-            ""
-          );
-
-
-        const description =
-          escapeHTML(
-            mix.description ||
-            ""
-          );
-
-
-        const audioURL =
-          String(
-            mix.audio_url ||
-            ""
-          );
-
-
-        if (!audioURL) {
-          return;
-        }
-
-
-        const card =
-          document.createElement(
-            "article"
-          );
-
-
-        card.className =
-          "card";
-
-
-        card.innerHTML = `
-
-          <div class="placeholder">
-            🎧
-          </div>
-
-          <div class="card-content">
-
-            <div class="source local-source">
-              MES MJAY MP4
-            </div>
-
-            <div class="title">
-              ${title}
-            </div>
-
-            <div class="artist">
-
-              ${artist}
-
-              ${
-                genre
-                  ? " • " + genre
-                  : ""
-              }
-
-            </div>
-
-            <div
-              style="
-                color:#888;
-                font-size:13px;
-                margin-bottom:15px;
-              "
-            >
-              ${description}
-            </div>
-
-            <div class="buttons">
-
-              <button
-                class="button listen"
-                onclick="
-                  playAudio(
-                    '${escapeJS(audioURL)}',
-                    this
-                  )
-                "
-              >
-                ▶ LISTEN
-              </button>
-
-              <a
-                class="button download"
-                href="${escapeAttribute(audioURL)}"
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ⬇ DOWNLOAD
-              </a>
-
-            </div>
-
-            <div class="player"></div>
-
-          </div>
-
-        `;
-
-
-        document
-          .getElementById("results")
-          .appendChild(card);
-
+      if (!audioURL) {
+        return;
       }
-    );
 
-  }
+      const card =
+        document.createElement("article");
 
-  catch(error) {
+      card.className = "card";
+
+      card.innerHTML = `
+        <div class="placeholder">
+          🎧
+        </div>
+
+        <div class="card-content">
+
+          <div class="source local-source">
+            MES MJAY MP4
+          </div>
+
+          <div class="title">
+            ${title}
+          </div>
+
+          <div class="artist">
+            ${artist}
+            ${genre ? " • " + genre : ""}
+          </div>
+
+          <div class="description">
+            ${description}
+          </div>
+
+          <div class="buttons">
+
+            <button
+              class="button listen"
+              type="button"
+              onclick="playAudio('${escapeJS(audioURL)}', this)"
+            >
+              ▶ LISTEN
+            </button>
+
+            <a
+              class="button download"
+              href="${escapeAttribute(audioURL)}"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ⬇ DOWNLOAD
+            </a>
+
+          </div>
+
+          <div class="player"></div>
+
+        </div>
+      `;
+
+      document
+        .getElementById("results")
+        .appendChild(card);
+
+    });
+
+  } catch (error) {
 
     console.error(
       "Supabase search error:",
@@ -1004,24 +891,19 @@ function playAudio(
   const card =
     button.closest(".card");
 
-
   const player =
     card.querySelector(".player");
-
 
   player.style.display =
     "block";
 
-
   player.innerHTML = `
-
     <audio
       controls
-      src="${escapeAttribute(audioURL)}"
-    ></audio>
-
+      preload="metadata"
+      src="${escapeAttribute(audioURL)}">
+    </audio>
   `;
-
 }
 
 
@@ -1032,20 +914,26 @@ function playAudio(
 async function uploadMix() {
 
   const status =
-    document.getElementById(
-      "uploadStatus"
-    );
+    document.getElementById("uploadStatus");
 
+  const uploadButton =
+    document.getElementById("uploadButton");
+
+  /*
+    This appears immediately.
+    Therefore we know the button actually worked.
+  */
+
+  status.textContent =
+    "⏳ Upload button clicked...";
 
   if (!supabaseClient) {
 
     status.textContent =
-      "Supabase is not configured.";
+      "❌ Supabase is not configured. Check your publishable key.";
 
     return;
-
   }
-
 
   const title =
     document
@@ -1053,13 +941,11 @@ async function uploadMix() {
       .value
       .trim();
 
-
   const artist =
     document
       .getElementById("uploadArtist")
       .value
       .trim();
-
 
   const genre =
     document
@@ -1067,48 +953,72 @@ async function uploadMix() {
       .value
       .trim();
 
-
   const description =
     document
       .getElementById("uploadDescription")
       .value
       .trim();
 
+  const fileInput =
+    document.getElementById("audioFile");
 
   const file =
-    document
-      .getElementById("audioFile")
-      .files[0];
+    fileInput.files[0];
 
-
-  if (!title || !file) {
+  if (!title) {
 
     status.textContent =
-      "Enter a title and choose a file.";
+      "❌ Enter a mix title.";
 
     return;
-
   }
 
+  if (!file) {
+
+    status.textContent =
+      "❌ Choose an audio file.";
+
+    return;
+  }
+
+  /*
+    Basic file-size protection.
+    Change this if your Supabase plan allows larger files.
+  */
+
+  const maxSize =
+    100 * 1024 * 1024;
+
+  if (file.size > maxSize) {
+
+    status.textContent =
+      "❌ File is larger than 100 MB.";
+
+    return;
+  }
+
+  uploadButton.disabled = true;
 
   status.textContent =
-    "Uploading...";
-
+    "⏳ Uploading file...";
 
   try {
 
     const safeName =
-      file.name.replace(
-        /[^a-zA-Z0-9._-]/g,
-        "_"
-      );
-
+      file.name
+        .replace(
+          /[^a-zA-Z0-9._-]/g,
+          "_"
+        );
 
     const filePath =
       Date.now() +
       "-" +
       safeName;
 
+    /*
+      Upload file to Storage
+    */
 
     const {
       error: uploadError
@@ -1118,14 +1028,29 @@ async function uploadMix() {
         .from("mixes")
         .upload(
           filePath,
-          file
+          file,
+          {
+            cacheControl: "3600",
+            upsert: false
+          }
         );
 
-
     if (uploadError) {
+
+      console.error(
+        "Storage upload error:",
+        uploadError
+      );
+
       throw uploadError;
     }
 
+    status.textContent =
+      "⏳ File uploaded. Saving mix information...";
+
+    /*
+      Get public URL
+    */
 
     const {
       data: publicData
@@ -1133,14 +1058,21 @@ async function uploadMix() {
       supabaseClient
         .storage
         .from("mixes")
-        .getPublicUrl(
-          filePath
-        );
-
+        .getPublicUrl(filePath);
 
     const audioURL =
-      publicData.publicUrl;
+      publicData?.publicUrl;
 
+    if (!audioURL) {
+
+      throw new Error(
+        "Could not create the public file URL."
+      );
+    }
+
+    /*
+      Save information in database
+    */
 
     const {
       error: databaseError
@@ -1148,70 +1080,67 @@ async function uploadMix() {
       await supabaseClient
         .from("mixes")
         .insert({
-
           title: title,
-
           artist: artist,
-
           genre: genre,
-
           description: description,
-
-          audio_url:
-            audioURL
-
+          audio_url: audioURL
         });
 
-
     if (databaseError) {
+
+      console.error(
+        "Database error:",
+        databaseError
+      );
+
       throw databaseError;
     }
 
+    /*
+      SUCCESS
+    */
 
     status.textContent =
-      "✅ Mix uploaded successfully!";
-
+      "✅ MIX UPLOADED SUCCESSFULLY!";
 
     document
       .getElementById("uploadTitle")
       .value = "";
 
-
     document
       .getElementById("uploadArtist")
       .value = "";
-
 
     document
       .getElementById("uploadGenre")
       .value = "";
 
-
     document
       .getElementById("uploadDescription")
       .value = "";
-
 
     document
       .getElementById("audioFile")
       .value = "";
 
-  }
-
-  catch(error) {
+  } catch (error) {
 
     console.error(
       "Upload error:",
       error
     );
 
-
     status.textContent =
       "❌ Upload failed: " +
       (
-        error.message ||
-        "Check Supabase permissions."
+        error?.message ||
+        "Unknown error"
       );
+
+  } finally {
+
+    uploadButton.disabled = false;
 
   }
 
@@ -1234,7 +1163,6 @@ document
           .getElementById("search")
           .value =
           button.dataset.query;
-
 
         searchEverything();
 
@@ -1266,9 +1194,7 @@ document
     "keydown",
     event => {
 
-      if (
-        event.key === "Enter"
-      ) {
+      if (event.key === "Enter") {
 
         searchEverything();
 
@@ -1279,7 +1205,19 @@ document
 
 
 /* =====================================================
-   12. MESSAGE
+   12. UPLOAD BUTTON
+===================================================== */
+
+document
+  .getElementById("uploadButton")
+  .addEventListener(
+    "click",
+    uploadMix
+  );
+
+
+/* =====================================================
+   13. MESSAGE
 ===================================================== */
 
 function showMessage(
@@ -1288,17 +1226,12 @@ function showMessage(
 ) {
 
   const card =
-    document.createElement(
-      "article"
-    );
-
+    document.createElement("article");
 
   card.className =
     "card";
 
-
   card.innerHTML = `
-
     <div class="placeholder">
       🔎
     </div>
@@ -1314,9 +1247,7 @@ function showMessage(
       </div>
 
     </div>
-
   `;
-
 
   document
     .getElementById("results")
@@ -1326,7 +1257,7 @@ function showMessage(
 
 
 /* =====================================================
-   13. SECURITY HELPERS
+   14. SECURITY HELPERS
 ===================================================== */
 
 function escapeHTML(value) {
