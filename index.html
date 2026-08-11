@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -21,7 +22,7 @@
     }
 
     header {
-      padding: 70px 20px;
+      padding: 65px 20px;
       text-align: center;
       background:
         radial-gradient(circle at 20% 20%, #6800a8, transparent 35%),
@@ -34,21 +35,14 @@
       font-weight: 900;
       letter-spacing: 5px;
       margin: 0;
-
-      background: linear-gradient(
-        90deg,
-        #ffffff,
-        #b75cff,
-        #ff2385
-      );
-
+      background: linear-gradient(90deg, #fff, #b75cff, #ff2385);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .tagline {
       color: #bbaec5;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       margin: 20px 0 35px;
     }
 
@@ -74,13 +68,7 @@
       padding: 0 25px;
       border: 0;
       border-radius: 40px;
-
-      background: linear-gradient(
-        90deg,
-        #7200ff,
-        #ff0066
-      );
-
+      background: linear-gradient(90deg, #7200ff, #ff0066);
       color: white;
       font-weight: bold;
       cursor: pointer;
@@ -104,41 +92,30 @@
     }
 
     .category:hover {
-      background: linear-gradient(
-        90deg,
-        #7200ff,
-        #ff0066
-      );
-
+      background: linear-gradient(90deg, #7200ff, #ff0066);
       color: white;
     }
 
     main {
       max-width: 1200px;
       margin: auto;
-      padding: 50px 20px;
+      padding: 45px 20px;
     }
 
     .section-title {
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       letter-spacing: 2px;
     }
 
     #status {
       text-align: center;
-      color: #999;
-      padding: 30px;
+      color: #aaa;
+      padding: 25px;
     }
 
     #results {
       display: grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(280px, 1fr)
-        );
-
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 22px;
     }
 
@@ -149,32 +126,51 @@
       overflow: hidden;
     }
 
-    .card img {
+    .thumbnail {
       width: 100%;
       height: 190px;
       object-fit: cover;
       display: block;
     }
 
-    .source {
-      display: inline-block;
-      margin-bottom: 10px;
-      padding: 5px 9px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: bold;
-      background: #25252c;
-      color: #bbb;
+    .placeholder {
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      background: linear-gradient(135deg, #7200ff, #ff0066);
     }
 
     .card-content {
       padding: 18px;
     }
 
+    .source {
+      display: inline-block;
+      padding: 5px 9px;
+      margin-bottom: 10px;
+      border-radius: 20px;
+      background: #25252c;
+      color: #bbb;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .youtube-source {
+      background: #d90000;
+      color: white;
+    }
+
+    .local-source {
+      background: #00a86b;
+      color: white;
+    }
+
     .title {
       font-weight: bold;
       line-height: 1.5;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .artist {
@@ -206,16 +202,6 @@
       color: white;
     }
 
-    .youtube {
-      background: #25252c;
-      color: white;
-    }
-
-    .hearthis {
-      background: #ff0066;
-      color: white;
-    }
-
     .download {
       background: #00a86b;
       color: white;
@@ -237,35 +223,13 @@
       width: 100%;
     }
 
-    .hearthis-box {
-      height: 190px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background:
-        linear-gradient(
-          135deg,
-          #ff0066,
-          #7200ff
-        );
-
-      font-size: 55px;
-    }
-
     .upload-section {
       max-width: 800px;
       margin: 60px auto;
       padding: 30px;
-
       background: #111116;
       border: 1px solid #24222b;
       border-radius: 18px;
-    }
-
-    .upload-section h2 {
-      margin-top: 0;
     }
 
     .upload-section input,
@@ -273,10 +237,8 @@
       width: 100%;
       margin-bottom: 12px;
       padding: 13px;
-
       border-radius: 8px;
       border: 1px solid #33303a;
-
       background: #08080b;
       color: white;
     }
@@ -289,17 +251,9 @@
     #uploadButton {
       width: 100%;
       padding: 14px;
-
       border: 0;
       border-radius: 9px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #7200ff,
-          #ff0066
-        );
-
+      background: linear-gradient(90deg, #7200ff, #ff0066);
       color: white;
       font-weight: bold;
       cursor: pointer;
@@ -328,15 +282,14 @@
       }
     }
   </style>
+
 </head>
 
 <body>
 
 <header>
 
-  <h1 class="logo">
-    MES MJAY MP4
-  </h1>
+  <h1 class="logo">MES MJAY MP4</h1>
 
   <p class="tagline">
     SEARCH • LISTEN • UPLOAD • DOWNLOAD
@@ -344,55 +297,43 @@
 
   <div class="search-area">
 
-    <input
-      id="search"
-      type="search"
-      placeholder="Search songs, DJs or mixes..."
-    >
+```
+<input
+  id="search"
+  type="search"
+  placeholder="Search songs, DJs or mixes..."
+>
 
-    <button
-      id="searchButton"
-      onclick="searchEverything()"
-    >
-      SEARCH
-    </button>
+<button id="searchButton">
+  SEARCH
+</button>
+```
 
   </div>
 
   <div class="categories">
 
-    <button
-      class="category"
-      onclick="categorySearch('Amapiano DJ Mix')"
-    >
-      🎧 Amapiano
-    </button>
+```
+<button class="category" data-query="Amapiano DJ Mix">
+  🎧 Amapiano
+</button>
 
-    <button
-      class="category"
-      onclick="categorySearch('Afro House DJ Mix')"
-    >
-      🔥 Afro House
-    </button>
+<button class="category" data-query="Afro House DJ Mix">
+  🔥 Afro House
+</button>
 
-    <button
-      class="category"
-      onclick="categorySearch('Hip Hop DJ Mix')"
-    >
-      🎤 Hip Hop
-    </button>
+<button class="category" data-query="Hip Hop DJ Mix">
+  🎤 Hip Hop
+</button>
 
-    <button
-      class="category"
-      onclick="categorySearch('Dancehall DJ Mix')"
-    >
-      💃 Dancehall
-    </button>
+<button class="category" data-query="Dancehall DJ Mix">
+  💃 Dancehall
+</button>
+```
 
   </div>
 
 </header>
-
 
 <main>
 
@@ -406,113 +347,121 @@
 
   <div id="results"></div>
 
-
-  <!-- UPLOAD -->
-
   <section class="upload-section">
 
-    <h2>
-      📤 Upload Your Mix
-    </h2>
+```
+<h2>📤 Upload Your Mix</h2>
 
-    <p>
-      Upload music or mixes that you own
-      or have permission to distribute.
-    </p>
+<p>
+  Upload music or mixes that you own
+  or have permission to distribute.
+</p>
 
-    <input
-      id="uploadTitle"
-      type="text"
-      placeholder="Mix title"
-    >
+<input
+  id="uploadTitle"
+  type="text"
+  placeholder="Mix title"
+>
 
-    <input
-      id="uploadArtist"
-      type="text"
-      placeholder="DJ / Artist name"
-    >
+<input
+  id="uploadArtist"
+  type="text"
+  placeholder="DJ / Artist name"
+>
 
-    <input
-      id="uploadGenre"
-      type="text"
-      placeholder="Genre"
-    >
+<input
+  id="uploadGenre"
+  type="text"
+  placeholder="Genre"
+>
 
-    <textarea
-      id="uploadDescription"
-      placeholder="Description"
-    ></textarea>
+<textarea
+  id="uploadDescription"
+  placeholder="Description"
+></textarea>
 
-    <input
-      id="audioFile"
-      type="file"
-      accept="audio/mpeg,audio/mp4,audio/wav,video/mp4"
-    >
+<input
+  id="audioFile"
+  type="file"
+  accept="audio/mpeg,audio/mp4,audio/wav,video/mp4"
+>
 
-    <button
-      id="uploadButton"
-      onclick="uploadMix()"
-    >
-      UPLOAD MIX
-    </button>
+<button id="uploadButton">
+  UPLOAD MIX
+</button>
 
-    <div id="uploadStatus"></div>
+<div id="uploadStatus"></div>
+```
 
   </section>
 
 </main>
 
-
 <footer>
-
-  <strong>
-    MES MJAY MP4
-  </strong>
-
+  <strong>MES MJAY MP4</strong>
   <br><br>
-
-  Search • Listen • Upload
-
+  Search • Listen • Upload • Download
 </footer>
-
 
 <script>
 
 /* =====================================================
-   SUPABASE
+   1. CONFIGURATION
 ===================================================== */
+
+
+/*
+   SUPABASE URL
+*/
 
 const SUPABASE_URL =
   "https://wnlajqbpkwtwpaaeqkxj.supabase.co";
 
+
+/*
+   SUPABASE PUBLISHABLE KEY
+
+   Replace this with your Supabase publishable key.
+
+   NEVER put a Supabase service_role/secret key here.
+*/
+
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_PXAmzEH8fRfMkCH7czbiPA_kus8zu7R";
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-
-
-/* =====================================================
-   YOUTUBE API
-===================================================== */
 
 /*
-  IMPORTANT:
-  Put your own restricted YouTube API key here.
+   YOUTUBE API KEY
 
-  Enable:
-  YouTube Data API v3
+   Replace this with the NEW key from Google Cloud.
 */
 
 const YOUTUBE_API_KEY =
-  "YOUR_YOUTUBE_API_KEY";
+  "AIzaSyDGq8I_PFGnDOGa4FG9eq6Ulc_gWhcQcTE";
 
 
 /* =====================================================
-   SEARCH EVERYTHING
+   2. SUPABASE
+===================================================== */
+
+let supabaseClient = null;
+
+if (
+  SUPABASE_PUBLISHABLE_KEY &&
+  !SUPABASE_PUBLISHABLE_KEY.includes("PASTE_")
+) {
+
+  supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+}
+
+
+/* =====================================================
+   3. MAIN SEARCH
 ===================================================== */
 
 async function searchEverything() {
@@ -523,28 +472,30 @@ async function searchEverything() {
       .value
       .trim();
 
-  if (!query) {
-
-    document.getElementById("status")
-      .textContent =
-      "Type something to search.";
-
-    return;
-  }
 
   const results =
     document.getElementById("results");
 
+
+  const status =
+    document.getElementById("status");
+
+
+  if (!query) {
+
+    status.textContent =
+      "Type a song, DJ or mix.";
+
+    return;
+
+  }
+
+
   results.innerHTML = "";
 
-  document.getElementById("status")
-    .textContent =
-    "🔎 Searching YouTube, HearThis and MES MJAY MP4...";
+  status.textContent =
+    "🔎 Searching YouTube and MES MJAY MP4...";
 
-
-  /*
-    Run searches together.
-  */
 
   await Promise.allSettled([
 
@@ -555,45 +506,39 @@ async function searchEverything() {
   ]);
 
 
-  /*
-    HearThis does not get scraped.
-    We give the user a direct search button.
-  */
+  if (!results.children.length) {
 
-  addHearThisSearch(query);
+    status.textContent =
+      "No results found.";
 
+  } else {
 
-  const count =
-    results.children.length;
+    status.textContent =
+      "✅ Results found";
 
-  document.getElementById("status")
-    .textContent =
-    `${count} results ready`;
+  }
 
 }
 
 
 /* =====================================================
-   YOUTUBE SEARCH
+   4. YOUTUBE SEARCH
 ===================================================== */
 
 async function searchYouTube(query) {
 
   if (
     !YOUTUBE_API_KEY ||
-    YOUTUBE_API_KEY === "AIzaSyDGq8I_PFGnDOGa4FG9eq6Ulc_gWhcQcTE"
+    YOUTUBE_API_KEY.includes("PASTE_")
   ) {
 
-    console.warn(
-      "YouTube API key has not been configured."
-    );
-
-    addMessageCard(
+    showMessage(
       "YouTube",
-      "YouTube search is not configured yet. Add your YouTube Data API key."
+      "YouTube API key has not been added."
     );
 
     return;
+
   }
 
 
@@ -613,8 +558,6 @@ async function searchYouTube(query) {
 
       "&maxResults=12" +
 
-      "&regionCode=KE" +
-
       "&key=" +
       encodeURIComponent(
         YOUTUBE_API_KEY
@@ -632,50 +575,86 @@ async function searchYouTube(query) {
     if (!response.ok) {
 
       console.error(
-        "YouTube API error:",
+        "YouTube API ERROR:",
         data
       );
 
-      addMessageCard(
-        "YouTube",
-        data.error?.message ||
-        "YouTube search failed."
+
+      let errorMessage =
+        data?.error?.message ||
+        "YouTube API request failed.";
+
+
+      const reason =
+        data?.error?.errors?.[0]?.reason;
+
+
+      if (
+        reason === "keyInvalid"
+      ) {
+
+        errorMessage =
+          "Your YouTube API key is invalid.";
+
+      }
+
+
+      if (
+        reason === "ipRefererBlocked"
+      ) {
+
+        errorMessage =
+          "Your API key is blocked by its website restriction.";
+
+      }
+
+
+      if (
+        reason === "quotaExceeded"
+      ) {
+
+        errorMessage =
+          "YouTube API quota has been exceeded.";
+
+      }
+
+
+      showMessage(
+        "YouTube ERROR",
+        errorMessage
       );
 
+
       return;
+
     }
 
 
-    if (!data.items?.length) {
+    if (
+      !data.items ||
+      data.items.length === 0
+    ) {
 
-      addMessageCard(
+      showMessage(
         "YouTube",
         "No YouTube results found."
       );
 
       return;
+
     }
 
 
     data.items.forEach(
-      function(video) {
+      video => {
 
         const videoId =
-          video.id.videoId;
+          video?.id?.videoId;
+
 
         if (!videoId) {
           return;
         }
-
-
-        const thumbnail =
-          video.snippet
-            .thumbnails
-            .high?.url ||
-          video.snippet
-            .thumbnails
-            .medium?.url ||
-          "";
 
 
         const title =
@@ -690,24 +669,39 @@ async function searchYouTube(query) {
           );
 
 
+        const thumbnail =
+          video.snippet
+            .thumbnails
+            .high?.url ||
+          video.snippet
+            .thumbnails
+            .medium?.url ||
+          video.snippet
+            .thumbnails
+            .default?.url;
+
+
         const card =
           document.createElement(
             "article"
           );
 
-        card.className = "card";
+
+        card.className =
+          "card";
 
 
         card.innerHTML = `
 
           <img
+            class="thumbnail"
             src="${thumbnail}"
             alt="${title}"
           >
 
           <div class="card-content">
 
-            <div class="source">
+            <div class="source youtube-source">
               YOUTUBE
             </div>
 
@@ -725,7 +719,7 @@ async function searchYouTube(query) {
                 class="button listen"
                 onclick="
                   playYouTube(
-                    '${escapeAttribute(videoId)}',
+                    '${escapeJS(videoId)}',
                     this
                   )
                 "
@@ -733,20 +727,12 @@ async function searchYouTube(query) {
                 ▶ LISTEN
               </button>
 
-              <a
-                class="button youtube"
-                href="https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}"
-                target="_blank"
-                rel="noopener"
-              >
-                OPEN
-              </a>
-
             </div>
 
             <div class="player"></div>
 
           </div>
+
         `;
 
 
@@ -762,11 +748,12 @@ async function searchYouTube(query) {
   catch(error) {
 
     console.error(
-      "YouTube search failed:",
+      "YouTube connection error:",
       error
     );
 
-    addMessageCard(
+
+    showMessage(
       "YouTube",
       "Could not connect to YouTube."
     );
@@ -777,70 +764,50 @@ async function searchYouTube(query) {
 
 
 /* =====================================================
-   HEARTHIS SEARCH
+   5. PLAY YOUTUBE INSIDE YOUR WEBSITE
 ===================================================== */
 
-function addHearThisSearch(query) {
+function playYouTube(
+  videoId,
+  button
+) {
 
   const card =
-    document.createElement(
-      "article"
-    );
-
-  card.className = "card";
+    button.closest(".card");
 
 
-  card.innerHTML = `
+  const player =
+    card.querySelector(".player");
 
-    <div class="hearthis-box">
-      🎧
-    </div>
 
-    <div class="card-content">
+  player.style.display =
+    "block";
 
-      <div class="source">
-        HEARTHIS.AT
-      </div>
 
-      <div class="title">
-        Search HearThis for:
-        ${escapeHTML(query)}
-      </div>
+  player.innerHTML = `
 
-      <div class="artist">
-        Find tracks, DJ sets and mixes
-        directly on HearThis.
-      </div>
+    <iframe
+      src="https://www.youtube.com/embed/${encodeURIComponent(videoId)}"
+      title="YouTube player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
 
-      <div class="buttons">
-
-        <a
-          class="button hearthis"
-          href="https://hearthis.at/search-music/"
-          target="_blank"
-          rel="noopener"
-        >
-          🔎 SEARCH HEARTHIS
-        </a>
-
-      </div>
-
-    </div>
   `;
-
-
-  document
-    .getElementById("results")
-    .appendChild(card);
 
 }
 
 
 /* =====================================================
-   SEARCH SUPABASE UPLOADS
+   6. SEARCH YOUR SUPABASE MIXES
 ===================================================== */
 
 async function searchMyUploads(query) {
+
+  if (!supabaseClient) {
+    return;
+  }
+
 
   try {
 
@@ -855,54 +822,38 @@ async function searchMyUploads(query) {
       error
     } =
       await supabaseClient
-
         .from("mixes")
-
         .select("*")
-
         .or(
           `title.ilike.%${safeQuery}%,artist.ilike.%${safeQuery}%,genre.ilike.%${safeQuery}%`
         )
-
         .limit(30);
 
 
     if (error) {
 
       console.error(
-        "Supabase search error:",
+        "Supabase ERROR:",
         error
       );
 
-      addMessageCard(
-        "MES MJAY MP4",
-        "Supabase search failed. Check your table and RLS policies."
-      );
-
       return;
+
     }
 
 
     if (!data?.length) {
-
       return;
     }
 
 
     data.forEach(
-      function(mix) {
-
-        const card =
-          document.createElement(
-            "article"
-          );
-
-        card.className = "card";
-
+      mix => {
 
         const title =
           escapeHTML(
-            mix.title || "Untitled Mix"
+            mix.title ||
+            "Untitled Mix"
           );
 
 
@@ -915,42 +866,55 @@ async function searchMyUploads(query) {
 
         const genre =
           escapeHTML(
-            mix.genre || ""
+            mix.genre ||
+            ""
           );
 
 
         const description =
           escapeHTML(
-            mix.description || ""
+            mix.description ||
+            ""
           );
 
 
         const audioURL =
           String(
-            mix.audio_url || ""
+            mix.audio_url ||
+            ""
           );
+
+
+        if (!audioURL) {
+          return;
+        }
+
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+
+        card.className =
+          "card";
 
 
         card.innerHTML = `
 
-          <div class="hearthis-box">
-
+          <div class="placeholder">
             🎧
-
           </div>
-
 
           <div class="card-content">
 
-            <div class="source">
+            <div class="source local-source">
               MES MJAY MP4
             </div>
-
 
             <div class="title">
               ${title}
             </div>
-
 
             <div class="artist">
 
@@ -964,7 +928,6 @@ async function searchMyUploads(query) {
 
             </div>
 
-
             <div
               style="
                 color:#888;
@@ -975,14 +938,13 @@ async function searchMyUploads(query) {
               ${description}
             </div>
 
-
             <div class="buttons">
 
               <button
                 class="button listen"
                 onclick="
                   playAudio(
-                    '${escapeAttribute(audioURL)}',
+                    '${escapeJS(audioURL)}',
                     this
                   )
                 "
@@ -990,23 +952,22 @@ async function searchMyUploads(query) {
                 ▶ LISTEN
               </button>
 
-
               <a
                 class="button download"
                 href="${escapeAttribute(audioURL)}"
                 download
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 ⬇ DOWNLOAD
               </a>
 
             </div>
 
-
             <div class="player"></div>
 
           </div>
+
         `;
 
 
@@ -1022,7 +983,7 @@ async function searchMyUploads(query) {
   catch(error) {
 
     console.error(
-      "Supabase error:",
+      "Supabase search error:",
       error
     );
 
@@ -1032,50 +993,7 @@ async function searchMyUploads(query) {
 
 
 /* =====================================================
-   YOUTUBE PLAYER
-===================================================== */
-
-function playYouTube(
-  videoId,
-  button
-) {
-
-  const card =
-    button.closest(".card");
-
-  const player =
-    card.querySelector(".player");
-
-
-  player.style.display =
-    "block";
-
-
-  player.innerHTML = `
-
-    <iframe
-
-      src="https://www.youtube.com/embed/${encodeURIComponent(videoId)}"
-
-      title="YouTube player"
-
-      allow="
-        autoplay;
-        encrypted-media;
-        picture-in-picture
-      "
-
-      allowfullscreen>
-
-    </iframe>
-
-  `;
-
-}
-
-
-/* =====================================================
-   AUDIO PLAYER
+   7. PLAY YOUR OWN AUDIO
 ===================================================== */
 
 function playAudio(
@@ -1085,6 +1003,7 @@ function playAudio(
 
   const card =
     button.closest(".card");
+
 
   const player =
     card.querySelector(".player");
@@ -1099,8 +1018,7 @@ function playAudio(
     <audio
       controls
       src="${escapeAttribute(audioURL)}"
-    >
-    </audio>
+    ></audio>
 
   `;
 
@@ -1108,10 +1026,26 @@ function playAudio(
 
 
 /* =====================================================
-   UPLOAD MIX
+   8. UPLOAD YOUR OWN MIX
 ===================================================== */
 
 async function uploadMix() {
+
+  const status =
+    document.getElementById(
+      "uploadStatus"
+    );
+
+
+  if (!supabaseClient) {
+
+    status.textContent =
+      "Supabase is not configured.";
+
+    return;
+
+  }
+
 
   const title =
     document
@@ -1147,17 +1081,13 @@ async function uploadMix() {
       .files[0];
 
 
-  const status =
-    document
-      .getElementById("uploadStatus");
-
-
   if (!title || !file) {
 
     status.textContent =
-      "Please enter a title and choose a file.";
+      "Enter a title and choose a file.";
 
     return;
+
   }
 
 
@@ -1181,24 +1111,19 @@ async function uploadMix() {
 
 
     const {
-      error: storageError
+      error: uploadError
     } =
       await supabaseClient
-
         .storage
-
         .from("mixes")
-
         .upload(
           filePath,
           file
         );
 
 
-    if (storageError) {
-
-      throw storageError;
-
+    if (uploadError) {
+      throw uploadError;
     }
 
 
@@ -1206,11 +1131,8 @@ async function uploadMix() {
       data: publicData
     } =
       supabaseClient
-
         .storage
-
         .from("mixes")
-
         .getPublicUrl(
           filePath
         );
@@ -1224,9 +1146,7 @@ async function uploadMix() {
       error: databaseError
     } =
       await supabaseClient
-
         .from("mixes")
-
         .insert({
 
           title: title,
@@ -1237,15 +1157,14 @@ async function uploadMix() {
 
           description: description,
 
-          audio_url: audioURL
+          audio_url:
+            audioURL
 
         });
 
 
     if (databaseError) {
-
       throw databaseError;
-
     }
 
 
@@ -1257,17 +1176,21 @@ async function uploadMix() {
       .getElementById("uploadTitle")
       .value = "";
 
+
     document
       .getElementById("uploadArtist")
       .value = "";
+
 
     document
       .getElementById("uploadGenre")
       .value = "";
 
+
     document
       .getElementById("uploadDescription")
       .value = "";
+
 
     document
       .getElementById("audioFile")
@@ -1296,31 +1219,52 @@ async function uploadMix() {
 
 
 /* =====================================================
-   CATEGORY SEARCH
+   9. CATEGORY BUTTONS
 ===================================================== */
 
-function categorySearch(category) {
+document
+  .querySelectorAll(".category")
+  .forEach(button => {
 
-  document
-    .getElementById("search")
-    .value =
-    category;
+    button.addEventListener(
+      "click",
+      () => {
+
+        document
+          .getElementById("search")
+          .value =
+          button.dataset.query;
 
 
-  searchEverything();
+        searchEverything();
 
-}
+      }
+    );
+
+  });
 
 
 /* =====================================================
-   ENTER KEY
+   10. SEARCH BUTTON
+===================================================== */
+
+document
+  .getElementById("searchButton")
+  .addEventListener(
+    "click",
+    searchEverything
+  );
+
+
+/* =====================================================
+   11. ENTER KEY
 ===================================================== */
 
 document
   .getElementById("search")
   .addEventListener(
     "keydown",
-    function(event) {
+    event => {
 
       if (
         event.key === "Enter"
@@ -1335,10 +1279,10 @@ document
 
 
 /* =====================================================
-   MESSAGE CARD
+   12. MESSAGE
 ===================================================== */
 
-function addMessageCard(
+function showMessage(
   source,
   message
 ) {
@@ -1348,13 +1292,14 @@ function addMessageCard(
       "article"
     );
 
+
   card.className =
     "card";
 
 
   card.innerHTML = `
 
-    <div class="hearthis-box">
+    <div class="placeholder">
       🔎
     </div>
 
@@ -1369,6 +1314,7 @@ function addMessageCard(
       </div>
 
     </div>
+
   `;
 
 
@@ -1380,37 +1326,28 @@ function addMessageCard(
 
 
 /* =====================================================
-   SECURITY HELPERS
+   13. SECURITY HELPERS
 ===================================================== */
 
 function escapeHTML(value) {
 
   return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
-    .replace(
-      /&/g,
-      "&amp;"
-    )
+}
 
-    .replace(
-      /</g,
-      "&lt;"
-    )
 
-    .replace(
-      />/g,
-      "&gt;"
-    )
+function escapeJS(value) {
 
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+  return String(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/\r/g, "\\r")
+    .replace(/\n/g, "\\n");
 
 }
 
@@ -1418,21 +1355,9 @@ function escapeHTML(value) {
 function escapeAttribute(value) {
 
   return String(value)
-
-    .replace(
-      /\\/g,
-      "\\\\"
-    )
-
-    .replace(
-      /'/g,
-      "\\'"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    );
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
 }
 
