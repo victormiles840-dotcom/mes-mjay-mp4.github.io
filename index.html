@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>MES MJAY MP4</title>
 
-
-  <!-- Supabase -->
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
   <style>
-
     * {
       box-sizing: border-box;
     }
-
 
     body {
       margin: 0;
@@ -32,197 +20,117 @@
       font-family: Arial, sans-serif;
     }
 
-
     header {
-
       padding: 70px 20px;
-
       text-align: center;
-
       background:
-        radial-gradient(
-          circle at 20% 20%,
-          #6800a8,
-          transparent 35%
-        ),
-
-        radial-gradient(
-          circle at 80% 70%,
-          #b00055,
-          transparent 35%
-        ),
-
+        radial-gradient(circle at 20% 20%, #6800a8, transparent 35%),
+        radial-gradient(circle at 80% 70%, #b00055, transparent 35%),
         #08080c;
     }
 
-
     .logo {
-
-      font-size: clamp(
-        38px,
-        8vw,
-        75px
-      );
-
+      font-size: clamp(38px, 8vw, 75px);
       font-weight: 900;
-
       letter-spacing: 5px;
-
       margin: 0;
 
-      background:
-        linear-gradient(
-          90deg,
-          #ffffff,
-          #b75cff,
-          #ff2385
-        );
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #b75cff,
+        #ff2385
+      );
 
       -webkit-background-clip: text;
-
-      -webkit-text-fill-color:
-        transparent;
+      -webkit-text-fill-color: transparent;
     }
 
-
     .tagline {
-
       color: #bbaec5;
-
       letter-spacing: 4px;
-
       margin: 20px 0 35px;
     }
 
-
     .search-area {
-
       max-width: 800px;
-
       margin: auto;
-
       display: flex;
-
       gap: 10px;
     }
 
-
     #search {
-
       flex: 1;
-
       padding: 18px 22px;
-
       border-radius: 40px;
-
       border: 1px solid #38343f;
-
       background: #121117;
-
       color: white;
-
       font-size: 16px;
-
       outline: none;
     }
 
-
     #searchButton {
-
       padding: 0 25px;
-
       border: 0;
-
       border-radius: 40px;
 
-      background:
-        linear-gradient(
-          90deg,
-          #7200ff,
-          #ff0066
-        );
+      background: linear-gradient(
+        90deg,
+        #7200ff,
+        #ff0066
+      );
 
       color: white;
-
       font-weight: bold;
-
       cursor: pointer;
     }
 
-
     .categories {
-
       margin-top: 25px;
-
       display: flex;
-
       justify-content: center;
-
       flex-wrap: wrap;
-
       gap: 10px;
     }
 
-
     .category {
-
       padding: 10px 17px;
-
       border-radius: 30px;
-
       border: 1px solid #37323e;
-
       background: #121117;
-
       color: #ddd;
-
       cursor: pointer;
     }
 
-
     .category:hover {
-
-      background:
-        linear-gradient(
-          90deg,
-          #7200ff,
-          #ff0066
-        );
+      background: linear-gradient(
+        90deg,
+        #7200ff,
+        #ff0066
+      );
 
       color: white;
     }
 
-
     main {
-
       max-width: 1200px;
-
       margin: auto;
-
       padding: 50px 20px;
     }
 
-
     .section-title {
-
       margin-bottom: 25px;
-
       letter-spacing: 2px;
     }
 
-
     #status {
-
       text-align: center;
-
       color: #999;
-
       padding: 30px;
     }
 
-
     #results {
-
       display: grid;
 
       grid-template-columns:
@@ -234,190 +142,155 @@
       gap: 22px;
     }
 
-
     .card {
-
       background: #111116;
-
       border: 1px solid #24222b;
-
       border-radius: 18px;
-
       overflow: hidden;
     }
 
-
     .card img {
-
       width: 100%;
-
       height: 190px;
-
       object-fit: cover;
-
       display: block;
     }
 
+    .source {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      background: #25252c;
+      color: #bbb;
+    }
 
     .card-content {
-
       padding: 18px;
     }
 
-
     .title {
-
       font-weight: bold;
-
       line-height: 1.5;
-
       margin-bottom: 10px;
     }
 
-
     .artist {
-
       color: #999;
-
       font-size: 13px;
-
       margin-bottom: 15px;
     }
 
-
     .buttons {
-
       display: flex;
-
       flex-wrap: wrap;
-
       gap: 8px;
     }
 
-
     .button {
-
       flex: 1;
-
       min-width: 100px;
-
       padding: 11px;
-
       border-radius: 9px;
-
       text-align: center;
-
       border: 0;
-
       text-decoration: none;
-
       font-weight: bold;
-
       cursor: pointer;
     }
 
-
     .listen {
-
       background: #7200ff;
-
       color: white;
     }
-
 
     .youtube {
-
       background: #25252c;
-
       color: white;
     }
 
+    .hearthis {
+      background: #ff0066;
+      color: white;
+    }
 
     .download {
-
       background: #00a86b;
-
       color: white;
     }
 
-
     .player {
-
       display: none;
-
       margin-top: 15px;
     }
 
-
     .player iframe {
-
       width: 100%;
-
       height: 220px;
-
       border: 0;
-
       border-radius: 10px;
     }
 
+    .player audio {
+      width: 100%;
+    }
+
+    .hearthis-box {
+      height: 190px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff0066,
+          #7200ff
+        );
+
+      font-size: 55px;
+    }
 
     .upload-section {
-
       max-width: 800px;
-
       margin: 60px auto;
-
       padding: 30px;
 
       background: #111116;
-
       border: 1px solid #24222b;
-
       border-radius: 18px;
     }
 
-
     .upload-section h2 {
-
       margin-top: 0;
     }
 
-
     .upload-section input,
     .upload-section textarea {
-
       width: 100%;
-
       margin-bottom: 12px;
-
       padding: 13px;
 
       border-radius: 8px;
-
       border: 1px solid #33303a;
 
       background: #08080b;
-
       color: white;
     }
 
-
     .upload-section textarea {
-
       min-height: 100px;
-
       resize: vertical;
     }
 
-
     #uploadButton {
-
       width: 100%;
-
       padding: 14px;
 
       border: 0;
-
       border-radius: 9px;
 
       background:
@@ -428,57 +301,36 @@
         );
 
       color: white;
-
       font-weight: bold;
-
       cursor: pointer;
     }
 
-
     #uploadStatus {
-
       margin-top: 15px;
-
       color: #aaa;
-
       text-align: center;
     }
 
-
     footer {
-
       padding: 40px 20px;
-
       text-align: center;
-
       color: #666;
-
       border-top: 1px solid #1c1c20;
     }
 
-
     @media (max-width: 650px) {
-
       .search-area {
-
         flex-direction: column;
       }
 
-
       #searchButton {
-
         padding: 15px;
       }
-
     }
-
   </style>
-
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -486,11 +338,9 @@
     MES MJAY MP4
   </h1>
 
-
   <p class="tagline">
     SEARCH • LISTEN • UPLOAD • DOWNLOAD
   </p>
-
 
   <div class="search-area">
 
@@ -509,7 +359,6 @@
 
   </div>
 
-
   <div class="categories">
 
     <button
@@ -519,7 +368,6 @@
       🎧 Amapiano
     </button>
 
-
     <button
       class="category"
       onclick="categorySearch('Afro House DJ Mix')"
@@ -527,14 +375,12 @@
       🔥 Afro House
     </button>
 
-
     <button
       class="category"
       onclick="categorySearch('Hip Hop DJ Mix')"
     >
       🎤 Hip Hop
     </button>
-
 
     <button
       class="category"
@@ -550,16 +396,13 @@
 
 <main>
 
-
   <h2 class="section-title">
     🔥 SEARCH RESULTS
   </h2>
 
-
   <div id="status">
     Search for a song, DJ or mix.
   </div>
-
 
   <div id="results"></div>
 
@@ -572,12 +415,10 @@
       📤 Upload Your Mix
     </h2>
 
-
     <p>
       Upload music or mixes that you own
       or have permission to distribute.
     </p>
-
 
     <input
       id="uploadTitle"
@@ -585,13 +426,11 @@
       placeholder="Mix title"
     >
 
-
     <input
       id="uploadArtist"
       type="text"
       placeholder="DJ / Artist name"
     >
-
 
     <input
       id="uploadGenre"
@@ -599,12 +438,10 @@
       placeholder="Genre"
     >
 
-
     <textarea
       id="uploadDescription"
       placeholder="Description"
     ></textarea>
-
 
     <input
       id="audioFile"
@@ -612,14 +449,12 @@
       accept="audio/mpeg,audio/mp4,audio/wav,video/mp4"
     >
 
-
     <button
       id="uploadButton"
       onclick="uploadMix()"
     >
       UPLOAD MIX
     </button>
-
 
     <div id="uploadStatus"></div>
 
@@ -643,19 +478,15 @@
 
 <script>
 
-
 /* =====================================================
-   SUPABASE CONNECTION
-   ===================================================== */
-
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
   "https://wnlajqbpkwtwpaaeqkxj.supabase.co";
 
-
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_PXAmzEH8fRfMkCH7czbiPA_kus8zu7R";
-
 
 const supabaseClient =
   window.supabase.createClient(
@@ -666,25 +497,23 @@ const supabaseClient =
 
 /* =====================================================
    YOUTUBE API
-   ===================================================== */
+===================================================== */
 
+/*
+  IMPORTANT:
+  Put your own restricted YouTube API key here.
+
+  Enable:
+  YouTube Data API v3
+*/
 
 const YOUTUBE_API_KEY =
-  "AIzaSyAZ9ouKaTX-Q035oT8zomtGyW1yfW9zYZE";
-
-
-/* =====================================================
-   AUTHORIZED DOWNLOAD LINKS
-   ===================================================== */
-
-
-const DOWNLOADS = {};
+  "YOUR_YOUTUBE_API_KEY";
 
 
 /* =====================================================
    SEARCH EVERYTHING
-   ===================================================== */
-
+===================================================== */
 
 async function searchEverything() {
 
@@ -693,7 +522,6 @@ async function searchEverything() {
       .getElementById("search")
       .value
       .trim();
-
 
   if (!query) {
 
@@ -704,34 +532,66 @@ async function searchEverything() {
     return;
   }
 
+  const results =
+    document.getElementById("results");
+
+  results.innerHTML = "";
 
   document.getElementById("status")
     .textContent =
-    "🔎 Searching...";
+    "🔎 Searching YouTube, HearThis and MES MJAY MP4...";
 
 
-  document.getElementById("results")
-    .innerHTML = "";
+  /*
+    Run searches together.
+  */
+
+  await Promise.allSettled([
+
+    searchYouTube(query),
+
+    searchMyUploads(query)
+
+  ]);
 
 
-  await searchYouTube(query);
+  /*
+    HearThis does not get scraped.
+    We give the user a direct search button.
+  */
 
-  await searchMyUploads(query);
+  addHearThisSearch(query);
+
+
+  const count =
+    results.children.length;
+
+  document.getElementById("status")
+    .textContent =
+    `${count} results ready`;
 
 }
 
 
 /* =====================================================
    YOUTUBE SEARCH
-   ===================================================== */
-
+===================================================== */
 
 async function searchYouTube(query) {
 
   if (
-    YOUTUBE_API_KEY ===
-    "AIzaSyAZ9ouKaTX-Q035oT8zomtGyW1yfW9zYZE"
+    !YOUTUBE_API_KEY ||
+    YOUTUBE_API_KEY === "AIzaSyDGq8I_PFGnDOGa4FG9eq6Ulc_gWhcQcTE"
   ) {
+
+    console.warn(
+      "YouTube API key has not been configured."
+    );
+
+    addMessageCard(
+      "YouTube",
+      "YouTube search is not configured yet. Add your YouTube Data API key."
+    );
 
     return;
   }
@@ -753,6 +613,8 @@ async function searchYouTube(query) {
 
       "&maxResults=12" +
 
+      "&regionCode=KE" +
+
       "&key=" +
       encodeURIComponent(
         YOUTUBE_API_KEY
@@ -769,7 +631,27 @@ async function searchYouTube(query) {
 
     if (!response.ok) {
 
-      console.error(data);
+      console.error(
+        "YouTube API error:",
+        data
+      );
+
+      addMessageCard(
+        "YouTube",
+        data.error?.message ||
+        "YouTube search failed."
+      );
+
+      return;
+    }
+
+
+    if (!data.items?.length) {
+
+      addMessageCard(
+        "YouTube",
+        "No YouTube results found."
+      );
 
       return;
     }
@@ -781,20 +663,19 @@ async function searchYouTube(query) {
         const videoId =
           video.id.videoId;
 
-
-        const card =
-          document.createElement(
-            "article"
-          );
-
-
-        card.className = "card";
+        if (!videoId) {
+          return;
+        }
 
 
         const thumbnail =
           video.snippet
             .thumbnails
-            .high?.url;
+            .high?.url ||
+          video.snippet
+            .thumbnails
+            .medium?.url ||
+          "";
 
 
         const title =
@@ -809,25 +690,12 @@ async function searchYouTube(query) {
           );
 
 
-        let downloadHTML = "";
+        const card =
+          document.createElement(
+            "article"
+          );
 
-
-        if (DOWNLOADS[videoId]) {
-
-          downloadHTML = `
-
-            <a
-              class="button download"
-              href="${DOWNLOADS[videoId]}"
-              download
-              target="_blank"
-              rel="noopener"
-            >
-              ⬇ DOWNLOAD
-            </a>
-
-          `;
-        }
+        card.className = "card";
 
 
         card.innerHTML = `
@@ -837,51 +705,48 @@ async function searchYouTube(query) {
             alt="${title}"
           >
 
-
           <div class="card-content">
+
+            <div class="source">
+              YOUTUBE
+            </div>
 
             <div class="title">
               ${title}
             </div>
 
-
             <div class="artist">
-              YouTube • ${channel}
+              ${channel}
             </div>
-
 
             <div class="buttons">
 
               <button
                 class="button listen"
-                onclick="playYouTube(
-                  '${videoId}',
-                  this
-                )"
+                onclick="
+                  playYouTube(
+                    '${escapeAttribute(videoId)}',
+                    this
+                  )
+                "
               >
                 ▶ LISTEN
               </button>
 
-
               <a
                 class="button youtube"
-                href="https://www.youtube.com/watch?v=${videoId}"
+                href="https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}"
                 target="_blank"
                 rel="noopener"
               >
-                YouTube
+                OPEN
               </a>
 
-
-              ${downloadHTML}
-
             </div>
-
 
             <div class="player"></div>
 
           </div>
-
         `;
 
 
@@ -892,16 +757,19 @@ async function searchYouTube(query) {
       }
     );
 
-
-    document.getElementById("status")
-      .textContent =
-      "Search results";
-
   }
 
   catch(error) {
 
-    console.error(error);
+    console.error(
+      "YouTube search failed:",
+      error
+    );
+
+    addMessageCard(
+      "YouTube",
+      "Could not connect to YouTube."
+    );
 
   }
 
@@ -909,15 +777,83 @@ async function searchYouTube(query) {
 
 
 /* =====================================================
-   SEARCH YOUR OWN UPLOADS
-   ===================================================== */
+   HEARTHIS SEARCH
+===================================================== */
 
+function addHearThisSearch(query) {
+
+  const card =
+    document.createElement(
+      "article"
+    );
+
+  card.className = "card";
+
+
+  card.innerHTML = `
+
+    <div class="hearthis-box">
+      🎧
+    </div>
+
+    <div class="card-content">
+
+      <div class="source">
+        HEARTHIS.AT
+      </div>
+
+      <div class="title">
+        Search HearThis for:
+        ${escapeHTML(query)}
+      </div>
+
+      <div class="artist">
+        Find tracks, DJ sets and mixes
+        directly on HearThis.
+      </div>
+
+      <div class="buttons">
+
+        <a
+          class="button hearthis"
+          href="https://hearthis.at/search-music/"
+          target="_blank"
+          rel="noopener"
+        >
+          🔎 SEARCH HEARTHIS
+        </a>
+
+      </div>
+
+    </div>
+  `;
+
+
+  document
+    .getElementById("results")
+    .appendChild(card);
+
+}
+
+
+/* =====================================================
+   SEARCH SUPABASE UPLOADS
+===================================================== */
 
 async function searchMyUploads(query) {
 
   try {
 
-    const { data, error } =
+    const safeQuery =
+      query
+        .replace(/,/g, " ")
+        .trim();
+
+
+    const {
+      data,
+      error
+    } =
       await supabaseClient
 
         .from("mixes")
@@ -925,7 +861,7 @@ async function searchMyUploads(query) {
         .select("*")
 
         .or(
-          `title.ilike.%${query}%,artist.ilike.%${query}%,genre.ilike.%${query}%`
+          `title.ilike.%${safeQuery}%,artist.ilike.%${safeQuery}%,genre.ilike.%${safeQuery}%`
         )
 
         .limit(30);
@@ -933,7 +869,21 @@ async function searchMyUploads(query) {
 
     if (error) {
 
-      console.error(error);
+      console.error(
+        "Supabase search error:",
+        error
+      );
+
+      addMessageCard(
+        "MES MJAY MP4",
+        "Supabase search failed. Check your table and RLS policies."
+      );
+
+      return;
+    }
+
+
+    if (!data?.length) {
 
       return;
     }
@@ -947,19 +897,19 @@ async function searchMyUploads(query) {
             "article"
           );
 
-
         card.className = "card";
 
 
         const title =
           escapeHTML(
-            mix.title
+            mix.title || "Untitled Mix"
           );
 
 
         const artist =
           escapeHTML(
-            mix.artist || "Unknown DJ"
+            mix.artist ||
+            "Unknown DJ"
           );
 
 
@@ -975,28 +925,27 @@ async function searchMyUploads(query) {
           );
 
 
+        const audioURL =
+          String(
+            mix.audio_url || ""
+          );
+
+
         card.innerHTML = `
 
-          <div
-            style="
-              height:190px;
-              display:flex;
-              align-items:center;
-              justify-content:center;
-              background:
-                linear-gradient(
-                  135deg,
-                  #7200ff,
-                  #ff0066
-                );
-              font-size:55px;
-            "
-          >
+          <div class="hearthis-box">
+
             🎧
+
           </div>
 
 
           <div class="card-content">
+
+            <div class="source">
+              MES MJAY MP4
+            </div>
+
 
             <div class="title">
               ${title}
@@ -1007,9 +956,10 @@ async function searchMyUploads(query) {
 
               ${artist}
 
-              ${genre
-                ? " • " + genre
-                : ""
+              ${
+                genre
+                  ? " • " + genre
+                  : ""
               }
 
             </div>
@@ -1032,9 +982,7 @@ async function searchMyUploads(query) {
                 class="button listen"
                 onclick="
                   playAudio(
-                    '${escapeAttribute(
-                      mix.audio_url
-                    )}',
+                    '${escapeAttribute(audioURL)}',
                     this
                   )
                 "
@@ -1045,7 +993,7 @@ async function searchMyUploads(query) {
 
               <a
                 class="button download"
-                href="${mix.audio_url}"
+                href="${escapeAttribute(audioURL)}"
                 download
                 target="_blank"
                 rel="noopener"
@@ -1059,7 +1007,6 @@ async function searchMyUploads(query) {
             <div class="player"></div>
 
           </div>
-
         `;
 
 
@@ -1074,7 +1021,10 @@ async function searchMyUploads(query) {
 
   catch(error) {
 
-    console.error(error);
+    console.error(
+      "Supabase error:",
+      error
+    );
 
   }
 
@@ -1082,9 +1032,8 @@ async function searchMyUploads(query) {
 
 
 /* =====================================================
-   PLAY YOUTUBE
-   ===================================================== */
-
+   YOUTUBE PLAYER
+===================================================== */
 
 function playYouTube(
   videoId,
@@ -1093,7 +1042,6 @@ function playYouTube(
 
   const card =
     button.closest(".card");
-
 
   const player =
     card.querySelector(".player");
@@ -1107,9 +1055,7 @@ function playYouTube(
 
     <iframe
 
-      src="
-        https://www.youtube.com/embed/${videoId}
-      "
+      src="https://www.youtube.com/embed/${encodeURIComponent(videoId)}"
 
       title="YouTube player"
 
@@ -1129,9 +1075,8 @@ function playYouTube(
 
 
 /* =====================================================
-   PLAY UPLOADED AUDIO
-   ===================================================== */
-
+   AUDIO PLAYER
+===================================================== */
 
 function playAudio(
   audioURL,
@@ -1140,7 +1085,6 @@ function playAudio(
 
   const card =
     button.closest(".card");
-
 
   const player =
     card.querySelector(".player");
@@ -1154,8 +1098,7 @@ function playAudio(
 
     <audio
       controls
-      style="width:100%"
-      src="${audioURL}"
+      src="${escapeAttribute(audioURL)}"
     >
     </audio>
 
@@ -1166,8 +1109,7 @@ function playAudio(
 
 /* =====================================================
    UPLOAD MIX
-   ===================================================== */
-
+===================================================== */
 
 async function uploadMix() {
 
@@ -1226,11 +1168,10 @@ async function uploadMix() {
   try {
 
     const safeName =
-      file.name
-        .replace(
-          /[^a-zA-Z0-9._-]/g,
-          "_"
-        );
+      file.name.replace(
+        /[^a-zA-Z0-9._-]/g,
+        "_"
+      );
 
 
     const filePath =
@@ -1239,18 +1180,19 @@ async function uploadMix() {
       safeName;
 
 
-    const { error:
-      storageError
-    } = await supabaseClient
+    const {
+      error: storageError
+    } =
+      await supabaseClient
 
-      .storage
+        .storage
 
-      .from("mixes")
+        .from("mixes")
 
-      .upload(
-        filePath,
-        file
-      );
+        .upload(
+          filePath,
+          file
+        );
 
 
     if (storageError) {
@@ -1260,8 +1202,8 @@ async function uploadMix() {
     }
 
 
-    const { data:
-      publicData
+    const {
+      data: publicData
     } =
       supabaseClient
 
@@ -1278,8 +1220,8 @@ async function uploadMix() {
       publicData.publicUrl;
 
 
-    const { error:
-      databaseError
+    const {
+      error: databaseError
     } =
       await supabaseClient
 
@@ -1287,20 +1229,15 @@ async function uploadMix() {
 
         .insert({
 
-          title:
-            title,
+          title: title,
 
-          artist:
-            artist,
+          artist: artist,
 
-          genre:
-            genre,
+          genre: genre,
 
-          description:
-            description,
+          description: description,
 
-          audio_url:
-            audioURL
+          audio_url: audioURL
 
         });
 
@@ -1320,36 +1257,38 @@ async function uploadMix() {
       .getElementById("uploadTitle")
       .value = "";
 
-
     document
       .getElementById("uploadArtist")
       .value = "";
-
 
     document
       .getElementById("uploadGenre")
       .value = "";
 
-
     document
       .getElementById("uploadDescription")
       .value = "";
-
 
     document
       .getElementById("audioFile")
       .value = "";
 
-
   }
 
   catch(error) {
 
-    console.error(error);
+    console.error(
+      "Upload error:",
+      error
+    );
 
 
     status.textContent =
-      "❌ Upload failed. We still need to configure the Supabase permissions.";
+      "❌ Upload failed: " +
+      (
+        error.message ||
+        "Check Supabase permissions."
+      );
 
   }
 
@@ -1358,8 +1297,7 @@ async function uploadMix() {
 
 /* =====================================================
    CATEGORY SEARCH
-   ===================================================== */
-
+===================================================== */
 
 function categorySearch(category) {
 
@@ -1376,8 +1314,7 @@ function categorySearch(category) {
 
 /* =====================================================
    ENTER KEY
-   ===================================================== */
-
+===================================================== */
 
 document
   .getElementById("search")
@@ -1398,9 +1335,53 @@ document
 
 
 /* =====================================================
-   SECURITY HELPERS
-   ===================================================== */
+   MESSAGE CARD
+===================================================== */
 
+function addMessageCard(
+  source,
+  message
+) {
+
+  const card =
+    document.createElement(
+      "article"
+    );
+
+  card.className =
+    "card";
+
+
+  card.innerHTML = `
+
+    <div class="hearthis-box">
+      🔎
+    </div>
+
+    <div class="card-content">
+
+      <div class="source">
+        ${escapeHTML(source)}
+      </div>
+
+      <div class="title">
+        ${escapeHTML(message)}
+      </div>
+
+    </div>
+  `;
+
+
+  document
+    .getElementById("results")
+    .appendChild(card);
+
+}
+
+
+/* =====================================================
+   SECURITY HELPERS
+===================================================== */
 
 function escapeHTML(value) {
 
@@ -1446,13 +1427,16 @@ function escapeAttribute(value) {
     .replace(
       /'/g,
       "\\'"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
     );
 
 }
 
 </script>
 
-
 </body>
-
 </html>
