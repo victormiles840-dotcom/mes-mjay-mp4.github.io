@@ -1,342 +1,547 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>MES MJAY MP4</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+  <!-- Supabase -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
       margin: 0;
-      background: #050507;
+      background: #060608;
       color: white;
-      font-family: "Inter", Arial, sans-serif;
+      font-family: Arial, sans-serif;
     }
+
 
     header {
-      min-height: 500px;
+
       padding: 70px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
       text-align: center;
-      position: relative;
-      overflow: hidden;
 
       background:
-        radial-gradient(circle at 15% 25%, rgba(130,0,255,.4), transparent 30%),
-        radial-gradient(circle at 85% 75%, rgba(255,0,110,.3), transparent 30%),
-        linear-gradient(135deg,#09000f,#050507 55%,#100008);
+        radial-gradient(
+          circle at 20% 20%,
+          #6800a8,
+          transparent 35%
+        ),
+
+        radial-gradient(
+          circle at 80% 70%,
+          #b00055,
+          transparent 35%
+        ),
+
+        #08080c;
     }
 
-    .hero {
-      width: 100%;
-      max-width: 950px;
-      position: relative;
-      z-index: 2;
-    }
 
     .logo {
-      margin: 0;
-      font-family: "Orbitron", sans-serif;
-      font-size: clamp(35px,8vw,75px);
+
+      font-size: clamp(
+        38px,
+        8vw,
+        75px
+      );
+
       font-weight: 900;
+
       letter-spacing: 5px;
 
-      background: linear-gradient(90deg,#fff,#b65cff,#ff278c);
+      margin: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #b75cff,
+          #ff2385
+        );
+
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+
+      -webkit-text-fill-color:
+        transparent;
     }
+
 
     .tagline {
+
+      color: #bbaec5;
+
+      letter-spacing: 4px;
+
       margin: 20px 0 35px;
-      font-family: "Orbitron", sans-serif;
-      font-size: 12px;
-      letter-spacing: 5px;
-      color: #c1b1ca;
     }
+
 
     .search-area {
-      width: 100%;
-      max-width: 760px;
+
+      max-width: 800px;
+
       margin: auto;
+
       display: flex;
+
       gap: 10px;
     }
+
 
     #search {
+
       flex: 1;
-      min-width: 0;
-      padding: 19px 24px;
-      border-radius: 50px;
-      border: 1px solid #3b3545;
-      outline: none;
-      background: rgba(255,255,255,.08);
+
+      padding: 18px 22px;
+
+      border-radius: 40px;
+
+      border: 1px solid #38343f;
+
+      background: #121117;
+
       color: white;
+
       font-size: 16px;
+
+      outline: none;
     }
 
-    #search::placeholder {
-      color: #888;
-    }
 
-    .search-button {
-      border: 0;
+    #searchButton {
+
       padding: 0 25px;
-      border-radius: 50px;
-      background: linear-gradient(90deg,#7200ff,#ff0066);
+
+      border: 0;
+
+      border-radius: 40px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #7200ff,
+          #ff0066
+        );
+
       color: white;
-      font-weight: 700;
+
+      font-weight: bold;
+
       cursor: pointer;
     }
 
+
     .categories {
+
       margin-top: 25px;
+
       display: flex;
+
       justify-content: center;
+
       flex-wrap: wrap;
+
       gap: 10px;
     }
 
+
     .category {
-      border: 1px solid #302b38;
-      background: rgba(255,255,255,.05);
-      color: #ddd;
+
       padding: 10px 17px;
+
       border-radius: 30px;
+
+      border: 1px solid #37323e;
+
+      background: #121117;
+
+      color: #ddd;
+
       cursor: pointer;
     }
 
+
     .category:hover {
-      background: linear-gradient(90deg,#7200ff,#ff0066);
+
+      background:
+        linear-gradient(
+          90deg,
+          #7200ff,
+          #ff0066
+        );
+
       color: white;
     }
 
+
     main {
+
       max-width: 1200px;
+
       margin: auto;
-      padding: 55px 20px;
+
+      padding: 50px 20px;
     }
+
 
     .section-title {
-      font-family: "Orbitron", sans-serif;
-      letter-spacing: 2px;
+
       margin-bottom: 25px;
+
+      letter-spacing: 2px;
     }
 
-    .section-title span {
-      color: #a500ff;
-    }
 
     #status {
+
       text-align: center;
+
       color: #999;
+
       padding: 30px;
     }
 
+
     #results {
+
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(280px, 1fr)
+        );
+
       gap: 22px;
     }
 
-    .video-card {
-      background: linear-gradient(145deg,#17141c,#0d0d10);
-      border: 1px solid #24212a;
+
+    .card {
+
+      background: #111116;
+
+      border: 1px solid #24222b;
+
       border-radius: 18px;
+
       overflow: hidden;
     }
 
-    .video-card:hover {
-      transform: translateY(-5px);
-      border-color: #8500ff;
-    }
 
-    .thumbnail {
+    .card img {
+
       width: 100%;
+
       height: 190px;
+
       object-fit: cover;
+
       display: block;
     }
 
-    .video-content {
+
+    .card-content {
+
       padding: 18px;
     }
 
-    .video-title {
-      font-family: "Orbitron", sans-serif;
-      font-size: 15px;
+
+    .title {
+
+      font-weight: bold;
+
       line-height: 1.5;
-      margin: 0 0 10px;
-    }
 
-    .channel {
-      color: #999;
-      font-size: 13px;
-      margin-bottom: 17px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    .button {
-      flex: 1;
-      border: 0;
-      padding: 11px;
-      border-radius: 9px;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .listen {
-      background: linear-gradient(90deg,#7300ff,#a700ff);
-      color: white;
-    }
-
-    .youtube {
-      background: #222228;
-      color: #ddd;
-      border: 1px solid #35353e;
-    }
-
-    .download {
-      background: linear-gradient(90deg,#00a86b,#00d084);
-      color: white;
-    }
-
-    .player-box {
-      display: none;
-      margin-top: 15px;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .player-box iframe {
-      width: 100%;
-      height: 230px;
-      border: 0;
-      display: block;
-    }
-
-    footer {
-      border-top: 1px solid #1b1b20;
-      text-align: center;
-      padding: 40px 20px;
-      color: #666;
-    }
-
-    .footer-logo {
-      font-family: "Orbitron", sans-serif;
-      letter-spacing: 3px;
-      color: #aaa;
       margin-bottom: 10px;
     }
 
-    @media (max-width:650px) {
+
+    .artist {
+
+      color: #999;
+
+      font-size: 13px;
+
+      margin-bottom: 15px;
+    }
+
+
+    .buttons {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+    }
+
+
+    .button {
+
+      flex: 1;
+
+      min-width: 100px;
+
+      padding: 11px;
+
+      border-radius: 9px;
+
+      text-align: center;
+
+      border: 0;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+
+    .listen {
+
+      background: #7200ff;
+
+      color: white;
+    }
+
+
+    .youtube {
+
+      background: #25252c;
+
+      color: white;
+    }
+
+
+    .download {
+
+      background: #00a86b;
+
+      color: white;
+    }
+
+
+    .player {
+
+      display: none;
+
+      margin-top: 15px;
+    }
+
+
+    .player iframe {
+
+      width: 100%;
+
+      height: 220px;
+
+      border: 0;
+
+      border-radius: 10px;
+    }
+
+
+    .upload-section {
+
+      max-width: 800px;
+
+      margin: 60px auto;
+
+      padding: 30px;
+
+      background: #111116;
+
+      border: 1px solid #24222b;
+
+      border-radius: 18px;
+    }
+
+
+    .upload-section h2 {
+
+      margin-top: 0;
+    }
+
+
+    .upload-section input,
+    .upload-section textarea {
+
+      width: 100%;
+
+      margin-bottom: 12px;
+
+      padding: 13px;
+
+      border-radius: 8px;
+
+      border: 1px solid #33303a;
+
+      background: #08080b;
+
+      color: white;
+    }
+
+
+    .upload-section textarea {
+
+      min-height: 100px;
+
+      resize: vertical;
+    }
+
+
+    #uploadButton {
+
+      width: 100%;
+
+      padding: 14px;
+
+      border: 0;
+
+      border-radius: 9px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #7200ff,
+          #ff0066
+        );
+
+      color: white;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+
+    #uploadStatus {
+
+      margin-top: 15px;
+
+      color: #aaa;
+
+      text-align: center;
+    }
+
+
+    footer {
+
+      padding: 40px 20px;
+
+      text-align: center;
+
+      color: #666;
+
+      border-top: 1px solid #1c1c20;
+    }
+
+
+    @media (max-width: 650px) {
 
       .search-area {
+
         flex-direction: column;
       }
 
-      .search-button {
+
+      #searchButton {
+
         padding: 15px;
       }
 
-      #results {
-        grid-template-columns: 1fr;
-      }
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-  <div class="hero">
+  <h1 class="logo">
+    MES MJAY MP4
+  </h1>
 
-    <h1 class="logo">
-      MES MJAY MP4
-    </h1>
 
-    <p class="tagline">
-      SEARCH • LISTEN • DOWNLOAD
-    </p>
+  <p class="tagline">
+    SEARCH • LISTEN • UPLOAD • DOWNLOAD
+  </p>
 
-    <div class="search-area">
 
-      <input
-        id="search"
-        type="search"
-        placeholder="🔍 Search DJ, mix or song..."
-      >
+  <div class="search-area">
 
-      <button
-        class="search-button"
-        onclick="searchYouTube()"
-      >
-        SEARCH
-      </button>
+    <input
+      id="search"
+      type="search"
+      placeholder="Search songs, DJs or mixes..."
+    >
 
-    </div>
+    <button
+      id="searchButton"
+      onclick="searchEverything()"
+    >
+      SEARCH
+    </button>
 
-    <div class="categories">
+  </div>
 
-      <button
-        class="category"
-        onclick="searchCategory('Amapiano DJ Mix')"
-      >
-        🎧 Amapiano
-      </button>
 
-      <button
-        class="category"
-        onclick="searchCategory('Afro House DJ Mix')"
-      >
-        🔥 Afro House
-      </button>
+  <div class="categories">
 
-      <button
-        class="category"
-        onclick="searchCategory('Hip Hop DJ Mix')"
-      >
-        🎤 Hip Hop
-      </button>
+    <button
+      class="category"
+      onclick="categorySearch('Amapiano DJ Mix')"
+    >
+      🎧 Amapiano
+    </button>
 
-      <button
-        class="category"
-        onclick="searchCategory('Dancehall DJ Mix')"
-      >
-        💃 Dancehall
-      </button>
 
-      <button
-        class="category"
-        onclick="searchCategory('Deep House DJ Mix')"
-      >
-        🌙 Deep House
-      </button>
+    <button
+      class="category"
+      onclick="categorySearch('Afro House DJ Mix')"
+    >
+      🔥 Afro House
+    </button>
 
-    </div>
+
+    <button
+      class="category"
+      onclick="categorySearch('Hip Hop DJ Mix')"
+    >
+      🎤 Hip Hop
+    </button>
+
+
+    <button
+      class="category"
+      onclick="categorySearch('Dancehall DJ Mix')"
+    >
+      💃 Dancehall
+    </button>
 
   </div>
 
@@ -345,383 +550,909 @@
 
 <main>
 
+
   <h2 class="section-title">
-    <span>🔥</span> SEARCH RESULTS
+    🔥 SEARCH RESULTS
   </h2>
 
+
   <div id="status">
-    Search for a DJ, song or mix above.
+    Search for a song, DJ or mix.
   </div>
 
+
   <div id="results"></div>
+
+
+  <!-- UPLOAD -->
+
+  <section class="upload-section">
+
+    <h2>
+      📤 Upload Your Mix
+    </h2>
+
+
+    <p>
+      Upload music or mixes that you own
+      or have permission to distribute.
+    </p>
+
+
+    <input
+      id="uploadTitle"
+      type="text"
+      placeholder="Mix title"
+    >
+
+
+    <input
+      id="uploadArtist"
+      type="text"
+      placeholder="DJ / Artist name"
+    >
+
+
+    <input
+      id="uploadGenre"
+      type="text"
+      placeholder="Genre"
+    >
+
+
+    <textarea
+      id="uploadDescription"
+      placeholder="Description"
+    ></textarea>
+
+
+    <input
+      id="audioFile"
+      type="file"
+      accept="audio/mpeg,audio/mp4,audio/wav,video/mp4"
+    >
+
+
+    <button
+      id="uploadButton"
+      onclick="uploadMix()"
+    >
+      UPLOAD MIX
+    </button>
+
+
+    <div id="uploadStatus"></div>
+
+  </section>
 
 </main>
 
 
 <footer>
 
-  <div class="footer-logo">
+  <strong>
     MES MJAY MP4
-  </div>
-
-  Search and discover DJ mixes.
+  </strong>
 
   <br><br>
 
-  © 2026 MES MJAY MP4
+  Search • Listen • Upload
 
 </footer>
 
 
 <script>
 
-  /*
-   * YOUR YOUTUBE DATA API KEY
-   *
-   * Use a NEW restricted key.
-   * Never post the key publicly.
-   */
 
-  const API_KEY =
-    "AIzaSyAfDnqlp9iAvfpDhCQPBCAjuZT0fj1PJpU";
+/* =====================================================
+   SUPABASE CONNECTION
+   ===================================================== */
 
 
-  /*
-   * AUTHORIZED DOWNLOADS
-   *
-   * Put download links here ONLY for files
-   * you own or have permission to distribute.
-   *
-   * Example:
-   *
-   * "YOUTUBE_VIDEO_ID":
-   * "https://your-authorized-file-url.mp3"
-   *
-   */
+const SUPABASE_URL =
+  "https://wnlajqbpkwtwpaaeqkxj.supabase.co";
 
-  const DOWNLOADS = {
 
-    /*
-      "exampleVideoID":
-      "https://yourwebsite.com/mix.mp3"
-    */
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_PXAmzEH8fRfMkCH7czbiPA_kus8zu7R";
 
-  };
 
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
 
-  async function searchYouTube() {
 
-    const query =
-      document.getElementById("search").value.trim();
+/* =====================================================
+   YOUTUBE API
+   ===================================================== */
 
-    const results =
-      document.getElementById("results");
 
-    const status =
-      document.getElementById("status");
+const YOUTUBE_API_KEY =
+  "AIzaSyAZ9ouKaTX-Q035oT8zomtGyW1yfW9zYZEf";
 
 
-    if (!query) {
+/* =====================================================
+   AUTHORIZED DOWNLOAD LINKS
+   ===================================================== */
 
-      results.innerHTML = "";
 
-      status.style.display = "block";
+const DOWNLOADS = {};
 
-      status.textContent =
-        "Type a DJ, song or mix to search.";
 
-      return;
+/* =====================================================
+   SEARCH EVERYTHING
+   ===================================================== */
 
-    }
 
+async function searchEverything() {
 
-    if (
-      API_KEY ===
-      "PASTE_YOUR_NEW_API_KEY_HERE"
-    ) {
+  const query =
+    document
+      .getElementById("search")
+      .value
+      .trim();
 
-      status.style.display = "block";
 
-      status.textContent =
-        "YouTube API key has not been added yet.";
+  if (!query) {
 
-      return;
+    document.getElementById("status")
+      .textContent =
+      "Type something to search.";
 
-    }
-
-
-    status.style.display = "block";
-
-    status.textContent =
-      "🔎 Searching YouTube...";
-
-    results.innerHTML = "";
-
-
-    try {
-
-      const url =
-        "https://www.googleapis.com/youtube/v3/search" +
-        "?part=snippet" +
-        "&q=" +
-        encodeURIComponent(query) +
-        "&type=video" +
-        "&videoEmbeddable=true" +
-        "&maxResults=12" +
-        "&key=" +
-        encodeURIComponent(API_KEY);
-
-
-      const response =
-        await fetch(url);
-
-
-      const data =
-        await response.json();
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          data.error?.message ||
-          "YouTube search failed."
-        );
-
-      }
-
-
-      if (
-        !data.items ||
-        data.items.length === 0
-      ) {
-
-        status.textContent =
-          "😔 No results found.";
-
-        return;
-
-      }
-
-
-      status.style.display = "none";
-
-
-      results.innerHTML =
-        data.items.map(function(video) {
-
-          const videoId =
-            video.id.videoId;
-
-          const title =
-            escapeHTML(
-              video.snippet.title
-            );
-
-          const channel =
-            escapeHTML(
-              video.snippet.channelTitle
-            );
-
-          const thumbnail =
-            video.snippet.thumbnails.high?.url ||
-            video.snippet.thumbnails.medium?.url;
-
-
-          /*
-           * ONLY SHOW DOWNLOAD IF
-           * WE HAVE AN AUTHORIZED LINK.
-           */
-
-          let downloadButton = "";
-
-
-          if (DOWNLOADS[videoId]) {
-
-            downloadButton = `
-
-              <a
-                class="button download"
-                href="${DOWNLOADS[videoId]}"
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ⬇ DOWNLOAD
-              </a>
-
-            `;
-
-          }
-
-
-          return `
-
-            <article class="video-card">
-
-              <img
-                class="thumbnail"
-                src="${thumbnail}"
-                alt="${title}"
-                loading="lazy"
-              >
-
-
-              <div class="video-content">
-
-                <h3 class="video-title">
-                  ${title}
-                </h3>
-
-
-                <div class="channel">
-                  🎧 ${channel}
-                </div>
-
-
-                <div class="actions">
-
-                  <button
-                    class="button listen"
-                    onclick="playVideo('${videoId}')"
-                  >
-                    ▶ LISTEN
-                  </button>
-
-
-                  <a
-                    class="button youtube"
-                    href="https://www.youtube.com/watch?v=${videoId}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    YouTube
-                  </a>
-
-                  ${downloadButton}
-
-                </div>
-
-
-                <div
-                  id="player-${videoId}"
-                  class="player-box"
-                ></div>
-
-              </div>
-
-            </article>
-
-          `;
-
-        }).join("");
-
-
-    } catch (error) {
-
-      console.error(error);
-
-      status.style.display = "block";
-
-      status.textContent =
-        "⚠️ Search failed. Check your API key.";
-
-    }
-
+    return;
   }
 
 
-  function playVideo(videoId) {
+  document.getElementById("status")
+    .textContent =
+    "🔎 Searching...";
 
-    const player =
-      document.getElementById(
-        "player-" + videoId
+
+  document.getElementById("results")
+    .innerHTML = "";
+
+
+  await searchYouTube(query);
+
+  await searchMyUploads(query);
+
+}
+
+
+/* =====================================================
+   YOUTUBE SEARCH
+   ===================================================== */
+
+
+async function searchYouTube(query) {
+
+  if (
+    YOUTUBE_API_KEY ===
+    "AIzaSyAZ9ouKaTX-Q035oT8zomtGyW1yfW9zYZE"
+  ) {
+
+    return;
+  }
+
+
+  try {
+
+    const url =
+      "https://www.googleapis.com/youtube/v3/search" +
+
+      "?part=snippet" +
+
+      "&q=" +
+      encodeURIComponent(query) +
+
+      "&type=video" +
+
+      "&videoEmbeddable=true" +
+
+      "&maxResults=12" +
+
+      "&key=" +
+      encodeURIComponent(
+        YOUTUBE_API_KEY
       );
 
 
-    if (!player) {
+    const response =
+      await fetch(url);
+
+
+    const data =
+      await response.json();
+
+
+    if (!response.ok) {
+
+      console.error(data);
+
       return;
     }
 
 
-    player.style.display = "block";
+    data.items.forEach(
+      function(video) {
+
+        const videoId =
+          video.id.videoId;
 
 
-    player.innerHTML = `
-
-      <iframe
-
-        src="https://www.youtube.com/embed/${videoId}"
-
-        title="YouTube player"
-
-        allow="
-          accelerometer;
-          autoplay;
-          clipboard-write;
-          encrypted-media;
-          gyroscope;
-          picture-in-picture;
-          web-share
-        "
-
-        allowfullscreen>
-
-      </iframe>
-
-    `;
+        const card =
+          document.createElement(
+            "article"
+          );
 
 
-    player.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest"
-    });
-
-  }
+        card.className = "card";
 
 
-  function searchCategory(category) {
-
-    document.getElementById("search").value =
-      category;
-
-    searchYouTube();
-
-  }
+        const thumbnail =
+          video.snippet
+            .thumbnails
+            .high?.url;
 
 
-  document
-    .getElementById("search")
-    .addEventListener(
-      "keydown",
-      function(event) {
+        const title =
+          escapeHTML(
+            video.snippet.title
+          );
 
-        if (event.key === "Enter") {
 
-          searchYouTube();
+        const channel =
+          escapeHTML(
+            video.snippet.channelTitle
+          );
 
+
+        let downloadHTML = "";
+
+
+        if (DOWNLOADS[videoId]) {
+
+          downloadHTML = `
+
+            <a
+              class="button download"
+              href="${DOWNLOADS[videoId]}"
+              download
+              target="_blank"
+              rel="noopener"
+            >
+              ⬇ DOWNLOAD
+            </a>
+
+          `;
         }
+
+
+        card.innerHTML = `
+
+          <img
+            src="${thumbnail}"
+            alt="${title}"
+          >
+
+
+          <div class="card-content">
+
+            <div class="title">
+              ${title}
+            </div>
+
+
+            <div class="artist">
+              YouTube • ${channel}
+            </div>
+
+
+            <div class="buttons">
+
+              <button
+                class="button listen"
+                onclick="playYouTube(
+                  '${videoId}',
+                  this
+                )"
+              >
+                ▶ LISTEN
+              </button>
+
+
+              <a
+                class="button youtube"
+                href="https://www.youtube.com/watch?v=${videoId}"
+                target="_blank"
+                rel="noopener"
+              >
+                YouTube
+              </a>
+
+
+              ${downloadHTML}
+
+            </div>
+
+
+            <div class="player"></div>
+
+          </div>
+
+        `;
+
+
+        document
+          .getElementById("results")
+          .appendChild(card);
 
       }
     );
 
 
-  function escapeHTML(value) {
-
-    return String(value)
-
-      .replace(/&/g, "&amp;")
-
-      .replace(/</g, "&lt;")
-
-      .replace(/>/g, "&gt;")
-
-      .replace(/"/g, "&quot;")
-
-      .replace(/'/g, "&#039;");
+    document.getElementById("status")
+      .textContent =
+      "Search results";
 
   }
 
+  catch(error) {
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* =====================================================
+   SEARCH YOUR OWN UPLOADS
+   ===================================================== */
+
+
+async function searchMyUploads(query) {
+
+  try {
+
+    const { data, error } =
+      await supabaseClient
+
+        .from("mixes")
+
+        .select("*")
+
+        .or(
+          `title.ilike.%${query}%,artist.ilike.%${query}%,genre.ilike.%${query}%`
+        )
+
+        .limit(30);
+
+
+    if (error) {
+
+      console.error(error);
+
+      return;
+    }
+
+
+    data.forEach(
+      function(mix) {
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+
+        card.className = "card";
+
+
+        const title =
+          escapeHTML(
+            mix.title
+          );
+
+
+        const artist =
+          escapeHTML(
+            mix.artist || "Unknown DJ"
+          );
+
+
+        const genre =
+          escapeHTML(
+            mix.genre || ""
+          );
+
+
+        const description =
+          escapeHTML(
+            mix.description || ""
+          );
+
+
+        card.innerHTML = `
+
+          <div
+            style="
+              height:190px;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              background:
+                linear-gradient(
+                  135deg,
+                  #7200ff,
+                  #ff0066
+                );
+              font-size:55px;
+            "
+          >
+            🎧
+          </div>
+
+
+          <div class="card-content">
+
+            <div class="title">
+              ${title}
+            </div>
+
+
+            <div class="artist">
+
+              ${artist}
+
+              ${genre
+                ? " • " + genre
+                : ""
+              }
+
+            </div>
+
+
+            <div
+              style="
+                color:#888;
+                font-size:13px;
+                margin-bottom:15px;
+              "
+            >
+              ${description}
+            </div>
+
+
+            <div class="buttons">
+
+              <button
+                class="button listen"
+                onclick="
+                  playAudio(
+                    '${escapeAttribute(
+                      mix.audio_url
+                    )}',
+                    this
+                  )
+                "
+              >
+                ▶ LISTEN
+              </button>
+
+
+              <a
+                class="button download"
+                href="${mix.audio_url}"
+                download
+                target="_blank"
+                rel="noopener"
+              >
+                ⬇ DOWNLOAD
+              </a>
+
+            </div>
+
+
+            <div class="player"></div>
+
+          </div>
+
+        `;
+
+
+        document
+          .getElementById("results")
+          .appendChild(card);
+
+      }
+    );
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* =====================================================
+   PLAY YOUTUBE
+   ===================================================== */
+
+
+function playYouTube(
+  videoId,
+  button
+) {
+
+  const card =
+    button.closest(".card");
+
+
+  const player =
+    card.querySelector(".player");
+
+
+  player.style.display =
+    "block";
+
+
+  player.innerHTML = `
+
+    <iframe
+
+      src="
+        https://www.youtube.com/embed/${videoId}
+      "
+
+      title="YouTube player"
+
+      allow="
+        autoplay;
+        encrypted-media;
+        picture-in-picture
+      "
+
+      allowfullscreen>
+
+    </iframe>
+
+  `;
+
+}
+
+
+/* =====================================================
+   PLAY UPLOADED AUDIO
+   ===================================================== */
+
+
+function playAudio(
+  audioURL,
+  button
+) {
+
+  const card =
+    button.closest(".card");
+
+
+  const player =
+    card.querySelector(".player");
+
+
+  player.style.display =
+    "block";
+
+
+  player.innerHTML = `
+
+    <audio
+      controls
+      style="width:100%"
+      src="${audioURL}"
+    >
+    </audio>
+
+  `;
+
+}
+
+
+/* =====================================================
+   UPLOAD MIX
+   ===================================================== */
+
+
+async function uploadMix() {
+
+  const title =
+    document
+      .getElementById("uploadTitle")
+      .value
+      .trim();
+
+
+  const artist =
+    document
+      .getElementById("uploadArtist")
+      .value
+      .trim();
+
+
+  const genre =
+    document
+      .getElementById("uploadGenre")
+      .value
+      .trim();
+
+
+  const description =
+    document
+      .getElementById("uploadDescription")
+      .value
+      .trim();
+
+
+  const file =
+    document
+      .getElementById("audioFile")
+      .files[0];
+
+
+  const status =
+    document
+      .getElementById("uploadStatus");
+
+
+  if (!title || !file) {
+
+    status.textContent =
+      "Please enter a title and choose a file.";
+
+    return;
+  }
+
+
+  status.textContent =
+    "Uploading...";
+
+
+  try {
+
+    const safeName =
+      file.name
+        .replace(
+          /[^a-zA-Z0-9._-]/g,
+          "_"
+        );
+
+
+    const filePath =
+      Date.now() +
+      "-" +
+      safeName;
+
+
+    const { error:
+      storageError
+    } = await supabaseClient
+
+      .storage
+
+      .from("mixes")
+
+      .upload(
+        filePath,
+        file
+      );
+
+
+    if (storageError) {
+
+      throw storageError;
+
+    }
+
+
+    const { data:
+      publicData
+    } =
+      supabaseClient
+
+        .storage
+
+        .from("mixes")
+
+        .getPublicUrl(
+          filePath
+        );
+
+
+    const audioURL =
+      publicData.publicUrl;
+
+
+    const { error:
+      databaseError
+    } =
+      await supabaseClient
+
+        .from("mixes")
+
+        .insert({
+
+          title:
+            title,
+
+          artist:
+            artist,
+
+          genre:
+            genre,
+
+          description:
+            description,
+
+          audio_url:
+            audioURL
+
+        });
+
+
+    if (databaseError) {
+
+      throw databaseError;
+
+    }
+
+
+    status.textContent =
+      "✅ Mix uploaded successfully!";
+
+
+    document
+      .getElementById("uploadTitle")
+      .value = "";
+
+
+    document
+      .getElementById("uploadArtist")
+      .value = "";
+
+
+    document
+      .getElementById("uploadGenre")
+      .value = "";
+
+
+    document
+      .getElementById("uploadDescription")
+      .value = "";
+
+
+    document
+      .getElementById("audioFile")
+      .value = "";
+
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+
+    status.textContent =
+      "❌ Upload failed. We still need to configure the Supabase permissions.";
+
+  }
+
+}
+
+
+/* =====================================================
+   CATEGORY SEARCH
+   ===================================================== */
+
+
+function categorySearch(category) {
+
+  document
+    .getElementById("search")
+    .value =
+    category;
+
+
+  searchEverything();
+
+}
+
+
+/* =====================================================
+   ENTER KEY
+   ===================================================== */
+
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Enter"
+      ) {
+
+        searchEverything();
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   SECURITY HELPERS
+   ===================================================== */
+
+
+function escapeHTML(value) {
+
+  return String(value)
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+function escapeAttribute(value) {
+
+  return String(value)
+
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+
+    .replace(
+      /'/g,
+      "\\'"
+    );
+
+}
+
 </script>
 
+
 </body>
+
 </html>
